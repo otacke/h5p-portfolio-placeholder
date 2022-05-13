@@ -1,0 +1,17 @@
+.h5p-group-of-three {
+  width: 100%;
+
+  .h5p-group-of-three-content-row {
+    display: flex;
+    flex-direction: row;
+    margin: 1em;
+
+    .h5p-group-of-three-content {
+      width: 100%;
+
+      &:not(:last-child) {
+        margin-right: 1em;
+      }
+    }
+  }
+}
