@@ -320,6 +320,10 @@ export default class GroupOfThree extends H5P.EventDispatcher {
    * @return {boolean} True, if instance is a task.
    */
   isInstanceTask(instance = {}) {
+    if (!instance) {
+      return false;
+    }
+
     if (instance.isTask) {
       return instance.isTask; // Content will determine if it's task on its own
     }
@@ -511,7 +515,7 @@ export default class GroupOfThree extends H5P.EventDispatcher {
   getCurrentState() {
     return {
       children: this.fields.map(field => {
-        return (typeof field?.instance.getCurrentState === 'function') ?
+        return (typeof field?.instance?.getCurrentState === 'function') ?
           field.instance.getCurrentState() :
           {};
       })
