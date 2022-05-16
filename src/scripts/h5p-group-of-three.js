@@ -208,6 +208,12 @@ export default class GroupOfThree extends H5P.EventDispatcher {
       if (image) {
         image.style.height = 'auto';
       }
+      else {
+        const placeholder = field.dom?.querySelector('.h5p-image > .h5p-placeholder');
+        if (placeholder) {
+          placeholder.parentNode.style.height = '10rem';
+        }
+      }
     }
     else if (machineName === 'H5P.Audio') {
       // Fix to H5P.Audio pending since January 2021 (https://github.com/h5p/h5p-audio/pull/48/files)
