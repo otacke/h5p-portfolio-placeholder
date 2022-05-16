@@ -24,5 +24,12 @@
     {
       "path": "dist/h5p-group-of-three.css"
     }
+  ],
+  "editorDependencies": [
+    {
+      "machineName": "H5PEditor.ShowWhen",
+      "majorVersion": 1,
+      "minorVersion": 0
+    }    
   ]
 }

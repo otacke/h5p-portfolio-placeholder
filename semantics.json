@@ -37,6 +37,14 @@
       "label": "Field",
       "fields": [
         {
+          "name": "isHidden",
+          "type": "boolean",
+          "label": "Hide content",
+          "description": "Check this option if you want to hide the content from the view without the need to delete it.",
+          "default": false,
+          "optional": true
+        },
+        {
           "name": "content",
           "type": "library",
           "label": "Content",
@@ -75,13 +83,16 @@
             "H5P.TrueFalse 1.6",
             "H5P.TwitterUserFeed 1.0",
             "H5P.Video 1.5"
-          ]
-        },
-        {
-          "name": "dummy",
-          "type": "boolean",
-          "label": "Dummy",
-          "widget": "none"
+          ],
+          "widget": "showWhen",
+          "showWhen": {
+            "rules": [
+              {
+                "field": "isHidden",
+                "equals": false
+              }
+            ]
+          }
         }
       ]
     }

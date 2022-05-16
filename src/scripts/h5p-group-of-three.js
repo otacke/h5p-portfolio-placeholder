@@ -95,7 +95,7 @@ export default class GroupOfThree extends H5P.EventDispatcher {
         );
       }
 
-      const instance = (!field.content) ?
+      const instance = (!field.content || field.isHidden) ?
         null :
         H5P.newRunnable(
           field.content,
