@@ -85,8 +85,12 @@ export default class GroupOfThree extends H5P.EventDispatcher {
 
       // Customize parameters
       if (field?.content?.params) {
+        const machineName = (typeof field?.content?.library === 'string') ?
+          field.content.library.split(' ')[0] :
+          '';
+
         field.content.params = this.customizeParameters(
-          field?.content?.libraryInfo?.machineName,
+          machineName,
           field.content.params
         );
       }
