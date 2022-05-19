@@ -317,6 +317,7 @@ export default class GroupOfThree extends H5P.EventDispatcher {
 
   /**
    * Determine whether an H5P instance is a task.
+   * @param {H5P.ContentType} H5P content instance.
    * @return {boolean} True, if instance is a task.
    */
   isInstanceTask(instance = {}) {
@@ -341,7 +342,7 @@ export default class GroupOfThree extends H5P.EventDispatcher {
       'H5P.SpeakTheWordsSet' // Doesn't implement getMaxScore yet
     ];
 
-    return exceptions.includes(instance?.libraryInfo?.machineName);
+    return exceptions.includes(instance.libraryInfo?.machineName);
   }
 
   /**
@@ -487,6 +488,22 @@ export default class GroupOfThree extends H5P.EventDispatcher {
     definition.interactionType = 'compound';
 
     return definition;
+  }
+
+  /**
+   * Get instances.
+   * @return {H5P.ContentType[]} H5P instances.
+   */
+  getInstances() {
+    return this.fields.map(field => field.instance);
+  }
+
+  /**
+   * Get instances' semantics.
+   * @return {object[]} H5P instance semantics.
+   */
+  getInstancesSemantics() {
+    return this.params.fields.map(field => field.content);
   }
 
   /**
