@@ -316,6 +316,17 @@ export default class GroupOfThree extends H5P.EventDispatcher {
   }
 
   /**
+   * Find field by subContentId.
+   * @param {string} subContentId SubContentId to look for.
+   * @return {object|null} Field data.
+   */
+  findField(subContentId) {
+    return this.fields.find(field => {
+      return field.instance?.subContentId === subContentId;
+    }) || null;
+  }
+
+  /**
    * Determine whether an H5P instance is a task.
    * @param {H5P.ContentType} H5P content instance.
    * @return {boolean} True, if instance is a task.
