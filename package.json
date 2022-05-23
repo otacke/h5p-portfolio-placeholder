@@ -1,5 +1,5 @@
 {
-  "name": "h5p-group-of-three",
+  "name": "h5p-portfolio-placeholder",
   "version": "0.1.0",
   "description": "Placeholder for RUB Portfolio",
   "private": true,
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/otacke/h5p-group-of-three.git"
+    "url": "git+https://github.com/otacke/h5p-portfolio-placeholder.git"
   },
   "keywords": [
     "h5p",

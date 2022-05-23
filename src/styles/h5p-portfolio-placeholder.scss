@@ -1,12 +1,12 @@
-.h5p-group-of-three {
+.h5p-portfolio-placeholder {
   width: 100%;
 
-  .h5p-group-of-three-content-row {
+  .h5p-portfolio-placeholder-content-row {
     display: flex;
     flex-direction: row;
     margin: 1em;
 
-    .h5p-group-of-three-content {
+    .h5p-portfolio-placeholder-content {
       width: 100%;
 
       &:not(:last-child) {

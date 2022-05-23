@@ -21,14 +21,14 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: 'h5p-group-of-three.css'
+      filename: 'h5p-portfolio-placeholder.css'
     })
   ],
   entry: {
-    dist: './src/entries/h5p-group-of-three.js'
+    dist: './src/entries/h5p-portfolio-placeholder.js'
   },
   output: {
-    filename: 'h5p-group-of-three.js',
+    filename: 'h5p-portfolio-placeholder.js',
     path: path.resolve(__dirname, 'dist')
   },
   target: ['web'],

@@ -1,5 +1,5 @@
 {
-  "title": "Group of Three",
+  "title": "Placeholder",
   "description": "Placeholder for RUB Portfolio",
   "majorVersion": 0,
   "minorVersion": 1,
@@ -7,7 +7,7 @@
   "runnable": 0,
   "author": "RUB, Oliver Tacke",
   "license": "MIT",
-  "machineName": "H5P.GroupOfThree",
+  "machineName": "H5P.PortfolioPlaceholder",
   "metadataSettings": {
       "disable": 1,
       "disableExtraTitleField": 1
@@ -17,12 +17,12 @@
   ],
   "preloadedJs": [
     {
-      "path": "dist/h5p-group-of-three.js"
+      "path": "dist/h5p-portfolio-placeholder.js"
     }
   ],
   "preloadedCss": [
     {
-      "path": "dist/h5p-group-of-three.css"
+      "path": "dist/h5p-portfolio-placeholder.css"
     }
   ],
   "editorDependencies": [
@@ -30,6 +30,6 @@
       "machineName": "H5PEditor.ShowWhen",
       "majorVersion": 1,
       "minorVersion": 0
-    }    
+    }
   ]
 }

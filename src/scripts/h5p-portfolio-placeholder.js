@@ -1,7 +1,7 @@
-import Util from './h5p-group-of-three-util';
-import '../styles/h5p-group-of-three.scss';
+import Util from './h5p-portfolio-placeholder-util';
+import '../styles/h5p-portfolio-placeholder.scss';
 
-export default class GroupOfThree extends H5P.EventDispatcher {
+export default class PortfolioPlaceholder extends H5P.EventDispatcher {
   /**
    * @constructor
    * @param {object} params Parameters passed by the editor.
@@ -57,7 +57,7 @@ export default class GroupOfThree extends H5P.EventDispatcher {
    * @param {jQuery} $wrapper Content's container.
    */
   attach($wrapper) {
-    $wrapper.get(0).classList.add('h5p-group-of-three');
+    $wrapper.get(0).classList.add('h5p-portfolio-placeholder');
     $wrapper.get(0).appendChild(this.buildDOM());
 
     // Make sure DOM has been rendered with content
@@ -139,7 +139,7 @@ export default class GroupOfThree extends H5P.EventDispatcher {
    */
   buildDOM() {
     const contents = document.createElement('div');
-    contents.classList.add('h5p-group-of-three-contents');
+    contents.classList.add('h5p-portfolio-placeholder-contents');
 
     let index = 0;
     const rowsToBuild = this.params.arrangement.split('-');
@@ -158,7 +158,7 @@ export default class GroupOfThree extends H5P.EventDispatcher {
    */
   buildContentRow(params = {}) {
     const row = document.createElement('div');
-    row.classList.add('h5p-group-of-three-content-row');
+    row.classList.add('h5p-portfolio-placeholder-content-row');
 
     (params.fields || []).forEach(field => {
       row.appendChild(field.dom);
@@ -173,7 +173,7 @@ export default class GroupOfThree extends H5P.EventDispatcher {
    */
   buildContentWrapper() {
     const contentWrapper = document.createElement('div');
-    contentWrapper.classList.add('h5p-group-of-three-content');
+    contentWrapper.classList.add('h5p-portfolio-placeholder-content');
 
     return contentWrapper;
   }
