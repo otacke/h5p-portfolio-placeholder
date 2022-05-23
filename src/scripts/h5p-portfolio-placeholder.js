@@ -524,7 +524,7 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
   getTitle() {
     // H5P Core function: createTitle
     return H5P.createTitle(
-      this.extras?.metadata?.title || GroupOfThree.DEFAULT_DESCRIPTION
+      this.extras?.metadata?.title || PortfolioPlaceholder.DEFAULT_DESCRIPTION
     );
   }
 
@@ -533,7 +533,7 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
    * @return {string} Description.
    */
   getDescription() {
-    return GroupOfThree.DEFAULT_DESCRIPTION;
+    return PortfolioPlaceholder.DEFAULT_DESCRIPTION;
   }
 
   /**
@@ -552,4 +552,4 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
 }
 
 /** @constant {string} */
-GroupOfThree.DEFAULT_DESCRIPTION = 'Group of Three';
+PortfolioPlaceholder.DEFAULT_DESCRIPTION = 'Group of Three';
