@@ -12,10 +12,15 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
     super();
 
     // Sanitize parameters
-    this.params = Util.extend({
-      arrangement: '1',
-      fields: []
-    }, params);
+    this.params = Util.extend(
+      {
+        placeholder: {
+          arrangement: '1',
+          fields: []
+        }
+      }, params);
+
+    this.params = this.params.placeholder;
 
     this.contentId = contentId;
     this.extras = extras;
