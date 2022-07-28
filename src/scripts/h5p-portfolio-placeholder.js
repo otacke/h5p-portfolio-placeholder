@@ -223,12 +223,14 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
     else if (machineName === 'H5P.Audio') {
       // Fix to H5P.Audio pending since January 2021 (https://github.com/h5p/h5p-audio/pull/48/files)
       const audio = field.dom.querySelector('.h5p-audio');
-      audio.style.height = (
-        !!window.chrome &&
-        field.content?.params?.playerMode === 'full'
-      ) ?
-        '54px' : // Chromium based browsers like Chrome, Edge or Opera need explicit default height
-        '100%';
+      if (audio) {
+        audio.style.height = (
+          !!window.chrome &&
+          field.content?.params?.playerMode === 'full'
+        ) ?
+          '54px' : // Chromium based browsers like Chrome, Edge or Opera need explicit default height
+          '100%';        
+      }
     }
   }
 
