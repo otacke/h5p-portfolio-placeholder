@@ -1,7 +1,7 @@
 [
   {
     "name": "placeholder",
-    "label": "TODO?",
+    "label": "Placeholder",
     "type": "group",
     "importance": "high",
     "widget": "portfolioplaceholder",
