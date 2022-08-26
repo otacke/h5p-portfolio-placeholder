@@ -12,6 +12,10 @@
       &:not(:last-child) {
         margin-right: 1em;
       }
+
+      &.h5p-video {
+        height: fit-content;
+      }
     }
   }
 }

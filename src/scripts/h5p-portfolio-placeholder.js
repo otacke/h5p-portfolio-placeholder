@@ -43,7 +43,8 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
     // Build fields
     this.fields = this.buildFields({
       fields: this.params.fields,
-      previousStates: this.previousState.children || []
+      previousStates: this.previousState.children || [],
+      arrangement: this.params.arrangement
     });
 
     // Some other content types might use this information
@@ -80,11 +81,22 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
    * @param {object} params Parameters.
    * @param {object[]} params.fields Field parameters.
    * @param {object[]} params.previousStates Previous states.
+   * @param {string} params.arrangement Layout arrangement.
    * @returns {object[]} Fields including DOM and instance.
    */
   buildFields(params = {}) {
     const fields = (params.fields || []).map((field, index) => {
-      const dom = this.buildContentWrapper();
+      const widthLookup = params.arrangement
+        .split('-')
+        .map(value => Number(value))
+        .reduce((lookup, current) => {
+          const columns = Array(current).fill(100 / current);
+          return [...lookup, ...columns];
+        }, []);
+
+      const dom = this.buildContentWrapper({
+        width: `${widthLookup[index]}%`
+      });
 
       const previousState = params?.previousStates.length > index ?
         params.previousStates[index] :
@@ -99,6 +111,16 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
         field.content.params = this.customizeParameters(
           machineName,
           field.content.params
+        );
+      }
+
+      // Fix video view, common issue
+      const machineName = field.content?.library?.split(' ')[0];
+      if (machineName === 'H5P.Video') {
+        field.content.params.visuals.fit = (
+          field.content?.params?.sources?.length > 0 &&
+          ['video/mp4', 'video/webm', 'video/ogg']
+            .includes(field.content.params.sources[0].mime)
         );
       }
 
@@ -180,11 +202,15 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
   /**
    * Build content wrapper.
    *
+   * @param {object} [params={}] Parameters.
    * @returns {HTMLElement} Content wrapper.
    */
-  buildContentWrapper() {
+  buildContentWrapper(params = {}) {
     const contentWrapper = document.createElement('div');
     contentWrapper.classList.add('h5p-portfolio-placeholder-content');
+    if (params.width) {
+      contentWrapper.style.width = params.width;
+    }
 
     return contentWrapper;
   }
