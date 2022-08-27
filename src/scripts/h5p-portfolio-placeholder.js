@@ -607,7 +607,7 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
     return {
       children: this.fields.map(field => {
         return (typeof field?.instance?.getCurrentState === 'function') ?
-          field.instance.getCurrentState() :
+          field.instance.getCurrentState() || {} :
           {};
       })
     };
