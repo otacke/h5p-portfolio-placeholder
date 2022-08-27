@@ -16,6 +16,10 @@
       &.h5p-video {
         height: fit-content;
       }
+
+      &.h5p-interactive-video {
+        background: transparent !important; /* original also uses !important */
+      }
     }
   }
 }
