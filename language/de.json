@@ -1,0 +1,43 @@
+{
+  "semantics": [
+    {
+      "label": "Platzhalter",
+      "fields": [
+        {
+          "label": "Anordnung der Inhalte",
+          "description": "Wöhle, wie die Inhalte angeordnet sein sollen.",
+          "options": [
+            {
+              "label": "1 Feld"
+            },
+            {
+              "label": "2 Felder"
+            },
+            {
+              "label": "3 Felder: 1 oben, 2 unten"
+            },
+            {
+              "label": "3 Felder: 2 oben, 1 unten"
+            }
+          ]
+        },
+        {
+          "label": "Felder",
+          "entity": "Feld",
+          "field": {
+            "label": "Feld",
+            "fields": [
+              {
+                "label": "Inhalt ausblenden",
+                "description": "Wähle diese Option an, wenn du den Inhalt für Nutzerinnen und Nutzer ausblenden willst, ohne ihn zu löschen."
+              },
+              {
+                "label": "Inhalt"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
