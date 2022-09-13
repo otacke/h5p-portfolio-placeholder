@@ -5,7 +5,7 @@
       "fields": [
         {
           "label": "Content arrangement",
-          "description": "Select how the contents should be arranged",
+          "description": "Select how the contents should be arranged.",
           "options": [
             {
               "label": "1 field"

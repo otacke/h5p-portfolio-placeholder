@@ -10,7 +10,7 @@
         "name": "arrangement",
         "type": "select",
         "label": "Content arrangement",
-        "description": "Select how the contents should be arranged",
+        "description": "Select how the contents should be arranged.",
         "options": [
           {
             "value": "1",
