@@ -49,7 +49,7 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
 
     // Some other content types might use this information
     this.isTask = this.fields.some(
-      field => this.isInstanceTask(field.instance)
+      (field) => this.isInstanceTask(field.instance)
     );
 
     // Expect parent to set activity started when parent is shown
@@ -88,7 +88,7 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
     const fields = (params.fields || []).map((field, index) => {
       const widthLookup = params.arrangement
         .split('-')
-        .map(value => Number(value))
+        .map((value) => Number(value))
         .reduce((lookup, current) => {
           const columns = Array(current).fill(100 / current);
           return [...lookup, ...columns];
@@ -146,7 +146,7 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
         this.bubbleUp(instance, 'resize', this);
 
         if (this.isInstanceTask(instance)) {
-          instance.on('xAPI', event => {
+          instance.on('xAPI', (event) => {
             this.trackScoring(event, index);
           });
         }
@@ -173,7 +173,7 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
 
     let index = 0;
     const rowsToBuild = this.params.arrangement.split('-');
-    rowsToBuild.forEach(rowCount => {
+    rowsToBuild.forEach((rowCount) => {
       const fieldsToBuild = this.fields.slice(index, index + parseInt(rowCount));
       contents.appendChild(this.buildContentRow({ fields: fieldsToBuild }));
       index += parseInt(rowCount);
@@ -192,7 +192,7 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
     const row = document.createElement('div');
     row.classList.add('h5p-portfolio-placeholder-content-row');
 
-    (params.fields || []).forEach(field => {
+    (params.fields || []).forEach((field) => {
       row.appendChild(field.dom);
     });
 
@@ -304,7 +304,7 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
         return; // Prevent send event back down.
       }
 
-      targets.forEach(target => {
+      targets.forEach((target) => {
         target.trigger(eventName, event);
       });
     });
@@ -347,7 +347,7 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
     }
 
     this.fields[index].isDone = true;
-    if (this.fields.every(field => field.isDone)) {
+    if (this.fields.every((field) => field.isDone)) {
       this.handleAllFieldsDone();
     }
   }
@@ -369,7 +369,7 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
    * @returns {object|null} Field data.
    */
   findField(subContentId) {
-    return this.fields.find(field => {
+    return this.fields.find((field) => {
       return field.instance?.subContentId === subContentId;
     }) || null;
   }
@@ -412,7 +412,7 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
    * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-1}
    */
   getAnswerGiven() {
-    return this.fields.some(field => {
+    return this.fields.some((field) => {
       return (
         typeof field?.instance?.getAnswerGiven === 'function' &&
         field.instance.getAnswerGiven()
@@ -454,7 +454,7 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
    * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-4}
    */
   showSolutions() {
-    this.fields.forEach(field => {
+    this.fields.forEach((field) => {
       if (typeof field?.instance?.showSolutions === 'function') {
         field.instance.showSolutions();
       }
@@ -469,7 +469,7 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
    * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-5}
    */
   resetTask() {
-    this.fields.forEach(field => {
+    this.fields.forEach((field) => {
       if (typeof field?.instance?.resetTask === 'function') {
         field.instance.resetTask();
       }
@@ -499,7 +499,7 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
     return {
       statement: xAPIEvent.data.statement,
       children: this.getXAPIDataFromChildren(
-        this.fields.map(field => field.instance)
+        this.fields.map((field) => field.instance)
       )
     };
   }
@@ -512,12 +512,12 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
    */
   getXAPIDataFromChildren(children) {
     return children
-      .map(child => {
+      .map((child) => {
         if (typeof child.getXAPIData === 'function') {
           return child.getXAPIData();
         }
       })
-      .filter(data => !!data);
+      .filter((data) => !!data);
   }
 
   /**
@@ -565,7 +565,7 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
    * @returns {H5P.ContentType[]} H5P instances.
    */
   getInstances() {
-    return this.fields.map(field => field.instance);
+    return this.fields.map((field) => field.instance);
   }
 
   /**
@@ -574,7 +574,7 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
    * @returns {object[]} H5P instance semantics.
    */
   getInstancesSemantics() {
-    return this.params.fields.map(field => field.content);
+    return this.params.fields.map((field) => field.content);
   }
 
   /**
@@ -605,7 +605,7 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
    */
   getCurrentState() {
     return {
-      children: this.fields.map(field => {
+      children: this.fields.map((field) => {
         return (typeof field?.instance?.getCurrentState === 'function') ?
           field.instance.getCurrentState() || {} :
           {};
