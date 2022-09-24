@@ -239,6 +239,10 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
    * @param {H5P.ContentType} field.instance H5P content.
    */
   customizeDOM(field = {}) {
+    if (!field.dom || !field.instance) {
+      return;
+    }
+
     const machineName = field.instance?.libraryInfo.machineName;
 
     // Add subcontent DOM customization if required
@@ -265,6 +269,25 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
           '54px' : // Chromium based browsers like Chrome, Edge or Opera need explicit default height
           '100%';
       }
+    }
+    else if (machineName === 'H5P.ImageHotspots') {
+      // Fix resize issue (Image Hotspots sets absolute width)
+      this.on('resize', () => {
+        clearTimeout(this.timeoutImageHotspots);
+        this.timeoutImageHotspots = setTimeout(() => {
+          const container = field.dom.querySelector('.h5p-image-hotspots-container');
+          if (container) {
+            container.style.width = '';
+            container.style.height = '';
+          }
+          const image = field.dom.querySelector('.h5p-image-hotspots-background');
+          if (image) {
+            image.style.width = '';
+            image.style.height = '';
+          }
+          field.instance.resize();
+        }, 0);
+      });
     }
   }
 
