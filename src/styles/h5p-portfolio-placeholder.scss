@@ -13,12 +13,16 @@
         margin-right: 1em;
       }
 
-      &.h5p-video {
-        height: fit-content;
-      }
+      .h5p-portfolio-placeholder-content-instance {
+        width: 100%;
 
-      &.h5p-interactive-video {
-        background: transparent !important; /* original also uses !important */
+        &.h5p-video {
+          height: fit-content;
+        }
+
+        &.h5p-interactive-video {
+          background: transparent !important; /* original also uses !important */
+        }
       }
     }
   }

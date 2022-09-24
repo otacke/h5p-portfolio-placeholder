@@ -86,17 +86,7 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
    */
   buildFields(params = {}) {
     const fields = (params.fields || []).map((field, index) => {
-      const widthLookup = params.arrangement
-        .split('-')
-        .map((value) => Number(value))
-        .reduce((lookup, current) => {
-          const columns = Array(current).fill(100 / current);
-          return [...lookup, ...columns];
-        }, []);
-
-      const dom = this.buildContentWrapper({
-        width: `${widthLookup[index]}%`
-      });
+      const dom = this.buildContentWrapper();
 
       const previousState = params?.previousStates.length > index ?
         params.previousStates[index] :
@@ -193,7 +183,12 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
     row.classList.add('h5p-portfolio-placeholder-content-row');
 
     (params.fields || []).forEach((field) => {
-      row.appendChild(field.dom);
+      const wrapper = document.createElement('div');
+      wrapper.classList.add('h5p-portfolio-placeholder-content');
+      wrapper.style.width = `${100 / params.fields.length}%`;
+      wrapper.appendChild(field.dom);
+
+      row.appendChild(wrapper);
     });
 
     return row;
@@ -207,7 +202,7 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
    */
   buildContentWrapper(params = {}) {
     const contentWrapper = document.createElement('div');
-    contentWrapper.classList.add('h5p-portfolio-placeholder-content');
+    contentWrapper.classList.add('h5p-portfolio-placeholder-content-instance');
     if (params.width) {
       contentWrapper.style.width = params.width;
     }
