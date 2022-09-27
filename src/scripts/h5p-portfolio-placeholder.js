@@ -280,6 +280,9 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
             image.style.width = '';
             image.style.height = '';
           }
+
+          // Will lead ImageHotspots to use static font size
+          field.instance.initialWidth = null;
           field.instance.resize();
         }, 0);
       });
