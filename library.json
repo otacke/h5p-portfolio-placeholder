@@ -8,10 +8,6 @@
   "author": "RUB, Oliver Tacke",
   "license": "MIT",
   "machineName": "H5P.PortfolioPlaceholder",
-  "metadataSettings": {
-      "disable": 1,
-      "disableExtraTitleField": 1
-    },
   "embedTypes": [
     "iframe"
   ],
