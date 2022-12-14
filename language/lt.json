@@ -1,0 +1,43 @@
+{
+  "semantics": [
+    {
+      "label": "Vietos rezervavimas",
+      "fields": [
+        {
+          "label": "Turinio išdėstymas",
+          "description": "Pasirinkite, kaip turėtų būti išdėstytas turinys.",
+          "options": [
+            {
+              "label": "1 laukas"
+            },
+            {
+              "label": "2 laukai"
+            },
+            {
+              "label": "3 laukai: 1 viršuje, 2 apačioje"
+            },
+            {
+              "label": "3 laukai: 2 viršuje, 1 apačioje"
+            }
+          ]
+        },
+        {
+          "label": "Laukai",
+          "entity": "laukas",
+          "field": {
+            "label": "Laukas",
+            "fields": [
+              {
+                "label": "Slėpti turinį",
+                "description": "Check this option if you want to hide the content from the view without the need to delete it."
+              },
+              {
+                "label": "Content"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
