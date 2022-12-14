@@ -1,0 +1,43 @@
+{
+  "semantics": [
+    {
+      "label": "Texto por defecto",
+      "fields": [
+        {
+          "label": "Disposición do contido",
+          "description": "Selecciona como debe organizarse o contido.",
+          "options": [
+            {
+              "label": "1 campo"
+            },
+            {
+              "label": "2 campos"
+            },
+            {
+              "label": "3 campos: 1 superior, 2 inferior"
+            },
+            {
+              "label": "3 campos: 2 superior, 1 inferior"
+            }
+          ]
+        },
+        {
+          "label": "Campos",
+          "entity": "campo",
+          "field": {
+            "label": "Campo",
+            "fields": [
+              {
+                "label": "Ocultar contido",
+                "description": "Marca esta opción se queres ocultar o contido sen necesidade de eliminalo."
+              },
+              {
+                "label": "Contido"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
