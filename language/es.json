@@ -1,0 +1,43 @@
+{
+  "semantics": [
+    {
+      "fields": [
+        {
+          "options": [
+            {
+              "label": "1 campo"
+            },
+            {
+              "label": "2 campos"
+            },
+            {
+              "label": "3 campos: 1 arriba, 2 abajo"
+            },
+            {
+              "label": "3 campos: 2 arriba, 1 abajo"
+            }
+          ],
+          "label": "Distribución del contenido",
+          "description": "Selecciona cómo deben organizarse los contenidos."
+        },
+        {
+          "label": "Campos",
+          "field": {
+            "fields": [
+              {
+                "label": "Ocultar contenido",
+                "description": "Marca esta opción si deseas ocultar el contenido sin necesidad de eliminarlo."
+              },
+              {
+                "label": "Contenido"
+              }
+            ],
+            "label": "Campo"
+          },
+          "entity": "campo"
+        }
+      ],
+      "label": "Marcador de posición"
+    }
+  ]
+}
