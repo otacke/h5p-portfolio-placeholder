@@ -1,8 +1,11 @@
 {
   "semantics": [
     {
+      "label": "Remplazable",
       "fields": [
         {
+          "label": "Distribución del contenido",
+          "description": "Selecciona cómo deben organizarse los contenidos.",
           "options": [
             {
               "label": "1 campo"
@@ -16,28 +19,25 @@
             {
               "label": "3 campos: 2 arriba, 1 abajo"
             }
-          ],
-          "label": "Distribución del contenido",
-          "description": "Selecciona cómo deben organizarse los contenidos."
+          ]
         },
         {
           "label": "Campos",
+          "entity": "campo",
           "field": {
+            "label": "Campo",
             "fields": [
               {
                 "label": "Ocultar contenido",
-                "description": "Marca esta opción si deseas ocultar el contenido sin necesidad de eliminarlo."
+                "description": "Marcar esta opción si desea ocultar el contenido sin necesidad de eliminarlo."
               },
               {
                 "label": "Contenido"
               }
-            ],
-            "label": "Campo"
-          },
-          "entity": "campo"
+            ]
+          }
         }
-      ],
-      "label": "Remplazable"
+      ]
     }
   ]
 }
