@@ -18,7 +18,11 @@
           },
           {
             "value": "2",
-            "label": "2 fields"
+            "label": "2 fields: 1 left, 1 right"
+          },
+          {
+            "value": "1-1",
+            "label": "2 fields: 1 top, 1 bottom"
           },
           {
             "value": "1-2",
