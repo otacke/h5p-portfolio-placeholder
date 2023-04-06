@@ -36,6 +36,9 @@
               },
               {
                 "label": "Inhalt"
+              },
+              {
+                "label": "Horizontaler Anteil"
               }
             ]
           }

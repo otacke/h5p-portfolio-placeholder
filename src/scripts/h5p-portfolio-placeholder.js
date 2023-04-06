@@ -20,6 +20,13 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
         }
       }, params);
 
+    // Sanitize grow proportion
+    this.params.placeholder.fields = this.params.placeholder.fields
+      .map((field) => {
+        field.growHorizontal = field.growHorizontal ?? 100;
+        return field;
+      });
+
     this.params = this.params.placeholder;
 
     this.contentId = contentId;
@@ -145,7 +152,8 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
       return {
         dom: dom,
         instance: instance,
-        isDone: !instance || !this.isInstanceTask(instance)
+        isDone: !instance || !this.isInstanceTask(instance),
+        growHorizontal: field.growHorizontal
       };
     });
 
@@ -164,8 +172,11 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
     let index = 0;
     const rowsToBuild = this.params.arrangement.split('-');
     rowsToBuild.forEach((rowCount) => {
-      const fieldsToBuild = this.fields.slice(index, index + parseInt(rowCount));
+      const fieldsToBuild = this.fields
+        .slice(index, index + parseInt(rowCount));
+
       contents.appendChild(this.buildContentRow({ fields: fieldsToBuild }));
+
       index += parseInt(rowCount);
     });
 
@@ -182,10 +193,15 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
     const row = document.createElement('div');
     row.classList.add('h5p-portfolio-placeholder-content-row');
 
+    const totalSpaceHorizontal = params.fields.reduce((space, field) => {
+      return space + field.growHorizontal;
+    }, 0);
+
     (params.fields || []).forEach((field) => {
       const wrapper = document.createElement('div');
       wrapper.classList.add('h5p-portfolio-placeholder-content');
-      wrapper.style.width = `${100 / params.fields.length}%`;
+
+      wrapper.style.width = `${ 100 * field.growHorizontal / totalSpaceHorizontal }%`;
       wrapper.appendChild(field.dom);
 
       row.appendChild(wrapper);

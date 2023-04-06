@@ -36,6 +36,9 @@
               },
               {
                 "label": "Content"
+              },
+              {
+                "label": "Horizontal proportion"
               }
             ]
           }

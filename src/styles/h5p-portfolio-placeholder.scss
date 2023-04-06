@@ -4,14 +4,11 @@
   .h5p-portfolio-placeholder-content-row {
     display: flex;
     flex-direction: row;
+    gap: 1em;
     margin: 1em;
 
     .h5p-portfolio-placeholder-content {
       width: 100%;
-
-      &:not(:last-child) {
-        margin-right: 1em;
-      }
 
       .h5p-portfolio-placeholder-content-instance {
         width: 100%;
