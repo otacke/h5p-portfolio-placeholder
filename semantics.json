@@ -105,9 +105,10 @@
               }
             },
             {
-              "name": "growHorizontal",
+              "name": "width",
               "type": "number",
-              "label": "Horizontal proportion"
+              "label": "Horizontal proportion",
+              "widget": "none"
             }
           ]
         }
