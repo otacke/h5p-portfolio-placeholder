@@ -21,6 +21,15 @@
             },
             {
               "label": "3 campos: 2 superior, 1 inferior"
+            },
+            {
+              "label": "3 fields: next to each other"
+            },
+            {
+              "label": "4 fields: 1 top, 3 bottom"
+            },
+            {
+              "label": "4 fields: 3 top, 1 bottom"
             }
           ]
         },

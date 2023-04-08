@@ -21,6 +21,15 @@
             },
             {
               "label": "3 Felder: 2 oben, 1 unten"
+            },
+            {
+              "label": "3 Felder: alle nebeneinander"
+            },
+            {
+              "label": "4 Felder: 1 oben, 3 unten"
+            },
+            {
+              "label": "4 Felder: 3 oben, 1 unten"
             }
           ]
         },
