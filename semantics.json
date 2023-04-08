@@ -108,7 +108,8 @@
               "name": "width",
               "type": "number",
               "label": "Horizontal proportion",
-              "widget": "none"
+              "widget": "none",
+              "default": 100
             }
           ]
         }
