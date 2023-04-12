@@ -23,13 +23,13 @@
               "label": "3 campos: 2 superior, 1 inferior"
             },
             {
-              "label": "3 fields: next to each other"
+              "label": "3 campos: xuntos"
             },
             {
-              "label": "4 fields: 1 top, 3 bottom"
+              "label": "4 campos: 1 superior, 3 inferiores"
             },
             {
-              "label": "4 fields: 3 top, 1 bottom"
+              "label": "4 campos: 3 superiores, 1 inferior"
             }
           ]
         },
@@ -47,7 +47,7 @@
                 "label": "Contido"
               },
               {
-                "label": "Horizontal proportion"
+                "label": "Proporción horizontal"
               }
             ]
           }
