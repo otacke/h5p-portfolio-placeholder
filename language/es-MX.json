@@ -4,19 +4,19 @@
       "label": "Remplazable",
       "fields": [
         {
-          "label": "Placeholder color",
-          "description": "Only used here in editor.",
+          "label": "Color del reemplazable",
+          "description": "Usado solamente aquí en el editor..",
           "default": "#1768c4"
         },
         {
           "label": "Distribución del contenido",
-          "description": "Selecciona cómo deben organizarse los contenidos.",
+          "description": "Seleccionar cómo deben organizarse los contenidos.",
           "options": [
             {
               "label": "1 campo"
             },
             {
-              "label": "2 campos: 1 left, 1 right"
+              "label": "2 campos: 1 izquierdo, 1 derecho"
             },
             {
               "label": "2 campos: 1 arriba, 1 abajo"
@@ -28,13 +28,13 @@
               "label": "3 campos: 2 arriba, 1 abajo"
             },
             {
-              "label": "3 fields: next to each other"
+              "label": "3 campos: uno al lado del otro"
             },
             {
-              "label": "4 fields: 1 top, 3 bottom"
+              "label": "4 campos: 1 arriba, 3 abajo"
             },
             {
-              "label": "4 fields: 3 top, 1 bottom"
+              "label": "4 campos: 3 arriba, 1 abajo"
             }
           ]
         },
@@ -52,7 +52,7 @@
                 "label": "Contenido"
               },
               {
-                "label": "Horizontal proportion"
+                "label": "Proporción horizontal"
               }
             ]
           }
