@@ -4,6 +4,11 @@
       "label": "Placeholder",
       "fields": [
         {
+          "label": "Placeholder color",
+          "description": "Only used here in editor.",
+          "default": "#1768c4"
+        },
+        {
           "label": "Content arrangement",
           "description": "Select how the contents should be arranged.",
           "options": [

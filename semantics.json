@@ -7,6 +7,20 @@
     "widget": "portfolioplaceholder",
     "fields": [
       {
+        "name": "colorEditorField",
+        "type": "text",
+        "label": "Placeholder color",
+        "description": "Only used here in editor.",
+        "importance": "medium",
+        "default": "#1768c4",
+        "optional": true,
+        "widget": "colorSelector",
+        "spectrum": {
+          "showInput": true,
+          "showInitial": true
+        }
+      },
+      {
         "name": "arrangement",
         "type": "select",
         "label": "Content arrangement",

@@ -4,6 +4,11 @@
       "label": "Remplazable",
       "fields": [
         {
+          "label": "Placeholder color",
+          "description": "Only used here in editor.",
+          "default": "#1768c4"
+        },
+        {
           "label": "Distribución del contenido",
           "description": "Selecciona cómo deben organizarse los contenidos.",
           "options": [

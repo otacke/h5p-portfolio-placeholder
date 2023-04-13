@@ -4,6 +4,11 @@
       "label": "Texto por defecto",
       "fields": [
         {
+          "label": "Placeholder color",
+          "description": "Only used here in editor.",
+          "default": "#1768c4"
+        },
+        {
           "label": "Disposición do contido",
           "description": "Selecciona como debe organizarse o contido.",
           "options": [

@@ -4,6 +4,11 @@
       "label": "Vietos rezervavimas",
       "fields": [
         {
+          "label": "Placeholder color",
+          "description": "Only used here in editor.",
+          "default": "#1768c4"
+        },
+        {
           "label": "Turinio išdėstymas",
           "description": "Pasirinkite, kaip turėtų būti išdėstytas turinys.",
           "options": [

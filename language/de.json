@@ -4,8 +4,13 @@
       "label": "Platzhalter",
       "fields": [
         {
+          "label": "Platzhalterfarbe",
+          "description": "Wird nur hier im Editor benutzt.",
+          "default": "#1768c4"
+        },
+        {
           "label": "Anordnung der Inhalte",
-          "description": "Wöhle, wie die Inhalte angeordnet sein sollen.",
+          "description": "Wähle, wie die Inhalte angeordnet sein sollen.",
           "options": [
             {
               "label": "1 Feld"
