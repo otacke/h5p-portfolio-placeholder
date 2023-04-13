@@ -4,8 +4,8 @@
       "label": "Remplazable",
       "fields": [
         {
-          "label": "Placeholder color",
-          "description": "Only used here in editor.",
+          "label": "Color del reemplazable",
+          "description": "Usado solamente aquí en el editor..",
           "default": "#1768c4"
         },
         {
@@ -16,7 +16,7 @@
               "label": "1 campo"
             },
             {
-              "label": "2 campos: 1 left, 1 right"
+              "label": "2 campos: 1 izquierdo, 1 derecho"
             },
             {
               "label": "2 campos: 1 arriba, 1 abajo"
