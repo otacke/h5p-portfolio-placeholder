@@ -1,5 +1,5 @@
-import Util from './h5p-portfolio-placeholder-util';
-import '../styles/h5p-portfolio-placeholder.scss';
+import Util from '@services/h5p-portfolio-placeholder-util';
+import '@styles/h5p-portfolio-placeholder.scss';
 
 export default class PortfolioPlaceholder extends H5P.EventDispatcher {
   /**
