@@ -4,8 +4,8 @@
       "label": "Texto por defecto",
       "fields": [
         {
-          "label": "Placeholder color",
-          "description": "Only used here in editor.",
+          "label": "Cor do marcador de posición",
+          "description": "Só se usa aquí no editor.",
           "default": "#1768c4"
         },
         {
