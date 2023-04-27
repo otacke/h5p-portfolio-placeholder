@@ -67,7 +67,6 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
 
   /**
    * Attach library to wrapper.
-   *
    * @param {H5P.jQuery} $wrapper Content's container.
    */
   attach($wrapper) {
@@ -84,7 +83,6 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
 
   /**
    * Build fields including DOM and H5P instances.
-   *
    * @param {object} params Parameters.
    * @param {object[]} params.fields Field parameters.
    * @param {object[]} params.previousStates Previous states.
@@ -162,7 +160,6 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
 
   /**
    * Build DOM.
-   *
    * @returns {HTMLElement} Content DOM.
    */
   buildDOM() {
@@ -185,7 +182,6 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
 
   /**
    * Build content row.
-   *
    * @param {object} [params={}] Parameters.
    * @returns {HTMLElement} Content row.
    */
@@ -213,7 +209,6 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
 
   /**
    * Build content wrapper.
-   *
    * @param {object} [params={}] Parameters.
    * @returns {HTMLElement} Content wrapper.
    */
@@ -229,7 +224,6 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
 
   /**
    * Customize H5P content parameters.
-   *
    * @param {string} machineName Content type's machine name.
    * @param {object} params H5P content parameters.
    * @returns {object} Customized H5P content parameters.
@@ -245,7 +239,6 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
 
   /**
    * Remove fullscreen buttons from content.
-   *
    * @param {object} field Field.
    * @param {HTMLElement} field.dom H5P content wrapper.
    * @param {H5P.ContentType} field.instance H5P content.
@@ -308,7 +301,6 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
 
   /**
    * Remove fullscreen buttons from content.
-   *
    * @param {object} field Field.
    * @param {H5P.ContentType} field.instance H5P content.
    */
@@ -331,7 +323,6 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
 
   /**
    * Make it easy to bubble events from parent to children.
-   *
    * @param {object} origin Origin of the event.
    * @param {string} eventName Name of the event.
    * @param {object[]} targets Targets to trigger event on.
@@ -350,7 +341,6 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
 
   /**
    * Make it easy to bubble events from child to parent.
-   *
    * @param {object} origin Origin of event.
    * @param {string} eventName Name of event.
    * @param {object} target Target to trigger event on.
@@ -371,7 +361,6 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
 
   /**
    * Track scoring of fields.
-   *
    * @param {Event} event Event.
    * @param {number} [index=-1] Index.
    */
@@ -402,7 +391,6 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
 
   /**
    * Find field by subContentId.
-   *
    * @param {string} subContentId SubContentId to look for.
    * @returns {object|null} Field data.
    */
@@ -414,7 +402,6 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
 
   /**
    * Determine whether an H5P instance is a task.
-   *
    * @param {H5P.ContentType} instance content instance.
    * @returns {boolean} True, if instance is a task.
    */
@@ -445,7 +432,6 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
 
   /**
    * Check if result has been submitted or input has been given.
-   *
    * @returns {boolean} True, if answer was given.
    * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-1}
    */
@@ -460,7 +446,6 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
 
   /**
    * Get score.
-   *
    * @returns {number} Score.
    * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-2}
    */
@@ -474,7 +459,6 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
 
   /**
    * Get maximum possible score.
-   *
    * @returns {number} Maximum possible score.
    * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-3}
    */
@@ -488,7 +472,6 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
 
   /**
    * Show solutions.
-   *
    * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-4}
    */
   showSolutions() {
@@ -503,7 +486,6 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
 
   /**
    * Reset task.
-   *
    * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-5}
    */
   resetTask() {
@@ -520,7 +502,6 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
 
   /**
    * Get xAPI data.
-   *
    * @returns {object} XAPI statement.
    * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-6}
    */
@@ -544,7 +525,6 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
 
   /**
    * Get xAPI data from sub content types.
-   *
    * @param {H5P.ContentType[]} children instances.
    * @returns {object[]} XAPI data objects used to build report.
    */
@@ -560,7 +540,6 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
 
   /**
    * Create an xAPI event.
-   *
    * @param {string} verb Short id of the verb we want to trigger.
    * @returns {H5P.XAPIEvent} Event template.
    */
@@ -575,7 +554,6 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
 
   /**
    * Get the xAPI definition for the xAPI object.
-   *
    * @returns {object} XAPI definition.
    */
   getxAPIDefinition() {
@@ -599,7 +577,6 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
 
   /**
    * Get instances.
-   *
    * @returns {H5P.ContentType[]} H5P instances.
    */
   getInstances() {
@@ -608,7 +585,6 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
 
   /**
    * Get instances' semantics.
-   *
    * @returns {object[]} H5P instance semantics.
    */
   getInstancesSemantics() {
@@ -617,7 +593,6 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
 
   /**
    * Get task title.
-   *
    * @returns {string} Title.
    */
   getTitle() {
@@ -629,7 +604,6 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
 
   /**
    * Get description.
-   *
    * @returns {string} Description.
    */
   getDescription() {
@@ -638,7 +612,6 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
 
   /**
    * Get current state.
-   *
    * @returns {object} Current state.
    */
   getCurrentState() {
