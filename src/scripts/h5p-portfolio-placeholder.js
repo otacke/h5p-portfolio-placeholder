@@ -119,7 +119,7 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
         );
       }
 
-      const instance = (!field.content || field.isHidden) ?
+      const instance = (!field.content?.library || field.isHidden) ?
         null :
         H5P.newRunnable(
           field.content,
