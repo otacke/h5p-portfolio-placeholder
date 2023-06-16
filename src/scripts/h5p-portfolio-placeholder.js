@@ -182,7 +182,7 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
 
   /**
    * Build content row.
-   * @param {object} [params={}] Parameters.
+   * @param {object} [params] Parameters.
    * @returns {HTMLElement} Content row.
    */
   buildContentRow(params = {}) {
@@ -209,7 +209,7 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
 
   /**
    * Build content wrapper.
-   * @param {object} [params={}] Parameters.
+   * @param {object} [params] Parameters.
    * @returns {HTMLElement} Content wrapper.
    */
   buildContentWrapper(params = {}) {
@@ -362,7 +362,7 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
   /**
    * Track scoring of fields.
    * @param {Event} event Event.
-   * @param {number} [index=-1] Index.
+   * @param {number} [index] Index.
    */
   trackScoring(event, index = -1) {
     if (!event || event.getScore() === null) {
