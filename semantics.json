@@ -75,7 +75,6 @@
         "label": "Fields",
         "entity": "field",
         "min": 1,
-        "max": 4,
         "field": {
           "name": "field",
           "type": "group",
