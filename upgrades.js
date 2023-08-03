@@ -7,7 +7,6 @@ H5PUpgrades['H5P.PortfolioPlaceholder'] = (function () {
       /**
        * Asynchronous content upgrade hook.
        * Fix potentially missing subContentId.
-       *
        * @param {object} parameters Parameters.
        * @param {function} finished Callback.
        * @param {object} extras Extra parameters.
