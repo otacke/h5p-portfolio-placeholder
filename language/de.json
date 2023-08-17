@@ -35,6 +35,12 @@
             },
             {
               "label": "4 Felder: 3 oben, 1 unten"
+            },
+            {
+              "label": "4 Felder: alle nebeneinander"
+            },
+            {
+              "label": "5 Felder: 1 oben, 4 unten"
             }
           ]
         },
@@ -47,6 +53,21 @@
               {
                 "label": "Inhalt ausblenden",
                 "description": "Wähle diese Option an, wenn du den Inhalt für Nutzerinnen und Nutzer ausblenden willst, ohne ihn zu löschen."
+              },
+              {
+                "label": "Vertikale Ausrichtung",
+                "description": "Lege die vertikale Ausrichtung zu den Inhalten links und recht fest.",
+                "options": [
+                  {
+                    "label": "Oben"
+                  },
+                  {
+                    "label": "Mitte"
+                  },
+                  {
+                    "label": "Unten"
+                  }
+                ]
               },
               {
                 "label": "Inhalt"

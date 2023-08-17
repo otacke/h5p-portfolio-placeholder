@@ -24,6 +24,7 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
     this.params.placeholder.fields = this.params.placeholder.fields
       .map((field) => {
         field.width = field.width ?? 100;
+        field.verticalAlignment = field.verticalAlignment ?? 'top';
         return field;
       });
 
@@ -151,6 +152,7 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
         dom: dom,
         instance: instance,
         isDone: !instance || !this.isInstanceTask(instance),
+        verticalAlignment: field.verticalAlignment,
         width: field.width
       };
     });
@@ -198,6 +200,7 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
     params.fields.forEach((field) => {
       const wrapper = document.createElement('div');
       wrapper.classList.add('h5p-portfolio-placeholder-content');
+      wrapper.classList.add(`vertical-alignment-${field.verticalAlignment}`);
       wrapper.style.width = `${ 100 * field.width / totalSpaceHorizontal }%`;
       wrapper.appendChild(field.dom);
 

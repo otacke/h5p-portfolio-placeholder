@@ -35,6 +35,12 @@
             },
             {
               "label": "4 campos: 3 arriba, 1 abajo"
+            },
+            {
+              "label": "4 campos: uno al lado del otro"
+            },
+            {
+              "label": "5 campos: 1 arriba, 4 abajo"
             }
           ]
         },
@@ -47,6 +53,21 @@
               {
                 "label": "Ocultar contenido",
                 "description": "Marcar esta opción si desea ocultar el contenido sin necesidad de eliminarlo."
+              },
+              {
+                "label": "Vertical alignment",
+                "description": "Set the vertical alignment in relationship to content left or right of this one.",
+                "options": [
+                  {
+                    "label": "Top"
+                  },
+                  {
+                    "label": "Center"
+                  },
+                  {
+                    "label": "Bottom"
+                  }
+                ]
               },
               {
                 "label": "Contenido"

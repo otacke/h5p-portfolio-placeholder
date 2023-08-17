@@ -8,14 +8,25 @@
     margin: 1em;
 
     .h5p-portfolio-placeholder-content {
+      display: flex;
+      flex-wrap: wrap;
       width: 100%;
 
-      .h5p-portfolio-placeholder-content-instance {
-        width: 100%;
+      &.vertical-alignment-top {
+        align-content: flex-start;
+      }
 
-        &.h5p-video {
-          height: fit-content;
-        }
+      &.vertical-alignment-center {
+        align-content: center;
+      }
+
+      &.vertical-alignment-bottom {
+        align-content: flex-end;
+      }
+
+      .h5p-portfolio-placeholder-content-instance {
+        height: fit-content;
+        width: 100%;
 
         &.h5p-interactive-video {
           background: transparent !important; /* original also uses !important */
