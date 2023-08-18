@@ -107,7 +107,7 @@
                   "label": "Bottom"
                 }
               ],
-              "default": "start"
+              "default": "top"
             },
             {
               "name": "content",
