@@ -55,7 +55,7 @@
                 "description": "Wähle diese Option an, wenn du den Inhalt für Nutzerinnen und Nutzer ausblenden willst, ohne ihn zu löschen."
               },
               {
-                "label": "Vertikale Ausrichtung",
+                "label": "Vertikale Ausrichtung des Inhalts",
                 "description": "Lege die vertikale Ausrichtung zu den Inhalten links und recht fest.",
                 "options": [
                   {
