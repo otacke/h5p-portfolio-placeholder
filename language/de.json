@@ -56,7 +56,7 @@
               },
               {
                 "label": "Vertikale Ausrichtung des Inhalts",
-                "description": "Lege die vertikale Ausrichtung zu den Inhalten links und recht fest.",
+                "description": "Lege die vertikale Ausrichtung zu den Inhalten links und rechts fest.",
                 "options": [
                   {
                     "label": "Oben"
