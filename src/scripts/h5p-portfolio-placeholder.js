@@ -167,6 +167,9 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
   buildDOM() {
     const contents = document.createElement('div');
     contents.classList.add('h5p-portfolio-placeholder-contents');
+    if (this.params.colorBackground !== 'rgba(0, 0, 0, 0)') {
+      contents.style.backgroundColor = this.params.colorBackground;
+    }
 
     let index = 0;
     const rowsToBuild = this.params.arrangement.split('-');

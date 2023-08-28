@@ -9,6 +9,11 @@
           "default": "#1768c4"
         },
         {
+          "label": "Background color",
+          "description": "Set an optional background color for the background.",
+          "default": "rgba(0, 0, 0, 0)"
+        },
+        {
           "label": "Distribución del contenido",
           "description": "Seleccionar cómo deben organizarse los contenidos.",
           "options": [

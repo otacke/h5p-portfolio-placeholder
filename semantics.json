@@ -21,6 +21,22 @@
         }
       },
       {
+        "name": "colorBackground",
+        "type": "text",
+        "label": "Background color",
+        "description": "Set an optional background color for the background.",
+        "importance": "low",
+        "optional": true,
+        "default": "rgba(0, 0, 0, 0)",
+        "widget": "colorSelector",
+        "spectrum": {
+          "showInput": true,
+          "showInitial": true,
+          "showAlpha": true,
+          "preferredFormat": "rgb"
+        }
+      },
+      {
         "name": "arrangement",
         "type": "select",
         "label": "Content arrangement",

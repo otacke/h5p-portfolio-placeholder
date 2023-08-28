@@ -9,6 +9,11 @@
           "default": "#1768c4"
         },
         {
+          "label": "Hintergrundfarbe",
+          "description": "Lege optional eine Hintergrundfarbe fest.",
+          "default": "rgba(0, 0, 0, 0)"
+        },
+        {
           "label": "Anordnung der Inhalte",
           "description": "Wähle, wie die Inhalte angeordnet sein sollen.",
           "options": [

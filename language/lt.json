@@ -9,6 +9,11 @@
           "default": "#1768c4"
         },
         {
+          "label": "Background color",
+          "description": "Set an optional background color for the background.",
+          "default": "rgba(0, 0, 0, 0)"
+        },
+        {
           "label": "Turinio išdėstymas",
           "description": "Pasirinkite, kaip turėtų būti išdėstytas turinys.",
           "options": [
