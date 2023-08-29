@@ -9,8 +9,8 @@
           "default": "#1768c4"
         },
         {
-          "label": "Background color",
-          "description": "Set an optional background color for the background.",
+          "label": "Color del fondo",
+          "description": "Configurar un color opcional del fondo para el fondo.",
           "default": "rgba(0, 0, 0, 0)"
         },
         {
@@ -45,7 +45,7 @@
               "label": "4 campos: uno al lado del otro"
             },
             {
-              "label": "5 fields: 1 arriba, 4 abajo"
+              "label": "5 campos: 1 arriba, 4 abajo"
             }
           ]
         },
@@ -60,17 +60,17 @@
                 "description": "Marca esta opción si deseas ocultar el contenido sin necesidad de eliminarlo."
               },
               {
-                "label": "Vertical alignment",
-                "description": "Set the vertical alignment in relationship to content left or right of this one.",
+                "label": "Alineación vertical",
+                "description": "Configurar la alineación vertical en relación al contenido a la izquierda o a la derecha de éste.",
                 "options": [
                   {
-                    "label": "Top"
+                    "label": "Superior"
                   },
                   {
-                    "label": "Center"
+                    "label": "Centro"
                   },
                   {
-                    "label": "Bottom"
+                    "label": "Inferior"
                   }
                 ]
               },
