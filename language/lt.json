@@ -4,8 +4,8 @@
       "label": "Vietos rezervavimas",
       "fields": [
         {
-          "label": "Placeholder color",
-          "description": "Only used here in editor.",
+          "label": "Vietos rezervavimo spalva",
+          "description": "Naudojamas tik čia, redaktoriuje.",
           "default": "#1768c4"
         },
         {
@@ -21,7 +21,7 @@
               "label": "1 laukas"
             },
             {
-              "label": "2 laukai: 1 left, 1 right"
+              "label": "2 laukai: 1 kairėje, 1 dešinėje"
             },
             {
               "label": "2 laukai: 1 viršuje, 1 apačioje"
@@ -33,10 +33,10 @@
               "label": "3 laukai: 2 viršuje, 1 apačioje"
             },
             {
-              "label": "3 fields: next to each other"
+              "label": "3 laukai: vienas šalia kito"
             },
             {
-              "label": "4 fields: 1 top, 3 bottom"
+              "label": "4 laukai: 1 viršuje, 3 apačioje"
             },
             {
               "label": "4 fields: 3 top, 1 bottom"
@@ -75,10 +75,10 @@
                 ]
               },
               {
-                "label": "Content"
+                "label": "Turinys"
               },
               {
-                "label": "Horizontal proportion"
+                "label": "Horizontali proporcija"
               }
             ]
           }
