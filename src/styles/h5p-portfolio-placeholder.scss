@@ -32,6 +32,10 @@
           background: transparent !important; /* original also uses !important */
         }
 
+        &.h5p-image > img {
+          object-fit: contain;
+        }
+
         &.h5p-image-hotspots {
           button.h5p-image-hotspot {
             font-size: max(32px, 2rem);

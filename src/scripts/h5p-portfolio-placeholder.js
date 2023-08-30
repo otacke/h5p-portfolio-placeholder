@@ -20,6 +20,11 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
         }
       }, params);
 
+    // Sanitize image height limit
+    this.params.placeholder.imageHeightLimit = this.sanitizeImageHeightLimit(
+      this.params.placeholder.imageHeightLimit
+    );
+
     // Sanitize grow proportion
     this.params.placeholder.fields = this.params.placeholder.fields
       .map((field) => {
@@ -129,6 +134,14 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
           false,
           { previousState: previousState }
         );
+
+      if (
+        machineName === 'H5P.Image' &&
+        this.params.imageHeightLimit &&
+        instance.$img
+      ) {
+        instance.$img.get(0).style.maxHeight = this.params.imageHeightLimit;
+      }
 
       // Customize DOM
       this.customizeDOM({ dom: dom, instance: instance });
@@ -259,10 +272,7 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
     // Add subcontent DOM customization if required
     if (machineName === 'H5P.Image') {
       const image = field.dom?.querySelector('.h5p-image > img');
-      if (image) {
-        image.style.height = 'auto';
-      }
-      else {
+      if (!image) {
         const placeholder = field.dom?.querySelector('.h5p-image > .h5p-placeholder');
         if (placeholder) {
           placeholder.parentNode.style.height = '10rem';
@@ -393,6 +403,19 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
     window.requestAnimationFrame(() => {
       this.triggerXAPIScored(this.getScore(), this.getMaxScore(), 'completed');
     });
+  }
+
+  /**
+   * Sanitize image height limit.
+   * @param {string} originalLength Original CSS length.
+   * @returns {string|undefined} Image height limit or undefined.
+   */
+  sanitizeImageHeightLimit(originalLength) {
+    if (typeof originalLength !== 'string') {
+      return;
+    }
+
+    return originalLength;
   }
 
   /**
