@@ -41,8 +41,7 @@
         "type": "text",
         "label": "Image height limit",
         "description": "Set an optional height limit for image contents using CSS lengths, e.g. 160px, 5rem, etc.",
-        "optional": true,
-        "state": "new"
+        "optional": true
       },
       {
         "name": "arrangement",

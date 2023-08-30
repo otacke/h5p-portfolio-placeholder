@@ -14,6 +14,10 @@
           "default": "rgba(0, 0, 0, 0)"
         },
         {
+          "label": "Höhenbegrenzung für Bilder",
+          "description": "Lege optional eine Höhenbegrenzung für Bildinhalte fest. Nutze dafür CSS-Längen, z.B. 160px, 5rem, usw."
+        },
+        {
           "label": "Anordnung der Inhalte",
           "description": "Wähle, wie die Inhalte angeordnet sein sollen.",
           "options": [
