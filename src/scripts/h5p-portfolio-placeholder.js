@@ -406,13 +406,21 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
   }
 
   /**
-   * Sanitize image height limit.
+   * Sanitize image height limit. Not covering all cases ...
    * @param {string} originalLength Original CSS length.
    * @returns {string|undefined} Image height limit or undefined.
    */
   sanitizeImageHeightLimit(originalLength) {
     if (typeof originalLength !== 'string') {
       return;
+    }
+
+    // Remove space characters
+    originalLength = originalLength.replace(/ /, '');
+
+    // Assume px if no unit is attached
+    if (!isNaN(Number(originalLength))) {
+      originalLength = `${originalLength}px`;
     }
 
     return originalLength;
