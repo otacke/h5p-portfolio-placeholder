@@ -15,7 +15,7 @@
         },
         {
           "label": "Höhenbegrenzung für Bilder",
-          "description": "Lege optional eine Höhenbegrenzung für Bildinhalte fest. Nutze dafür CSS-Längen, z.B. 160px, 5rem, usw."
+          "description": "Lege optional eine Höhenbegrenzung für Bildinhalte fest. Nutze dafür CSS-Längen, z.B. 160px oder 5rem."
         },
         {
           "label": "Anordnung der Inhalte",
