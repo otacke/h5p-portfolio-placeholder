@@ -32,8 +32,12 @@
           background: transparent !important; /* original also uses !important */
         }
 
-        &.h5p-image > img {
-          object-fit: contain;
+        &.h5p-image {
+          margin: auto;
+
+          &> img {
+            object-fit: contain;
+          }
         }
 
         &.h5p-image-hotspots {

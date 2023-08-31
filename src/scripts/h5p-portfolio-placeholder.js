@@ -140,7 +140,15 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
         this.params.imageHeightLimit &&
         instance.$img
       ) {
-        instance.$img.get(0).style.maxHeight = this.params.imageHeightLimit;
+        const image = instance.$img.get(0);
+        image.style.maxHeight = this.params.imageHeightLimit;
+
+        // Screenshot module cannot handle object-fit. Workaround by deriving max-width, too
+        instance.on('loaded', () => {
+          const imageRatio = image.naturalWidth / image.naturalHeight;
+          const maxWidth = `calc(${this.params.imageHeightLimit} * ${imageRatio})`;
+          image.parentNode.style.maxWidth = maxWidth;
+        });
       }
 
       // Customize DOM
