@@ -14,8 +14,8 @@
           "default": "rgba(0, 0, 0, 0)"
         },
         {
-          "label": "Image height limit",
-          "description": "Set an optional height limit for image contents using CSS lengths, e.g. 160px or 5rem."
+          "label": "Límite de altura de imagen",
+          "description": "Configurar un límite opcional de altura para contenidos de imagen usando longitudes de CSS, por ejemplo 160px o 5rem."
         },
         {
           "label": "Distribución del contenido",
