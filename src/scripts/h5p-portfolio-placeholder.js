@@ -622,14 +622,14 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
 
   /**
    * Get instances.
-   * @returns {H5P.ContentType[]} H5P instances.
+   * @returns {H5P.ContentType[]} H5P instances. Interface for parent.
    */
   getInstances() {
     return this.fields.map((field) => field.instance);
   }
 
   /**
-   * Get instances' semantics.
+   * Get instances' semantics. Interface for parent.
    * @returns {object[]} H5P instance semantics.
    */
   getInstancesSemantics() {
