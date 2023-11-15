@@ -1,4 +1,6 @@
 import Util from '@services/util.js';
+import QuestionTypeContract from '@mixins/question-type-contract.js';
+import XAPI from '@mixins/xapi.js';
 import '@styles/h5p-portfolio-placeholder.scss';
 
 export default class PortfolioPlaceholder extends H5P.EventDispatcher {
@@ -10,6 +12,10 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
    */
   constructor(params, contentId, extras = {}) {
     super();
+
+    Util.addMixins(
+      PortfolioPlaceholder, [QuestionTypeContract, XAPI]
+    );
 
     // Sanitize parameters
     this.params = Util.extend(
@@ -281,7 +287,9 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
     if (machineName === 'H5P.Image') {
       const image = field.dom?.querySelector('.h5p-image > img');
       if (!image) {
-        const placeholder = field.dom?.querySelector('.h5p-image > .h5p-placeholder');
+        const placeholder =
+          field.dom?.querySelector('.h5p-image > .h5p-placeholder');
+
         if (placeholder) {
           placeholder.parentNode.style.height = '10rem';
         }
@@ -304,12 +312,15 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
       this.on('resize', () => {
         clearTimeout(this.timeoutImageHotspots);
         this.timeoutImageHotspots = setTimeout(() => {
-          const container = field.dom.querySelector('.h5p-image-hotspots-container');
+          const container =
+            field.dom.querySelector('.h5p-image-hotspots-container');
+
           if (container) {
             container.style.width = '';
             container.style.height = '';
           }
-          const image = field.dom.querySelector('.h5p-image-hotspots-background');
+          const image =
+            field.dom.querySelector('.h5p-image-hotspots-background');
           if (image) {
             image.style.width = '';
             image.style.height = '';
@@ -476,151 +487,6 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
   }
 
   /**
-   * Check if result has been submitted or input has been given.
-   * @returns {boolean} True, if answer was given.
-   * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-1}
-   */
-  getAnswerGiven() {
-    return this.fields.some((field) => {
-      return (
-        typeof field?.instance?.getAnswerGiven === 'function' &&
-        field.instance.getAnswerGiven()
-      );
-    });
-  }
-
-  /**
-   * Get score.
-   * @returns {number} Score.
-   * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-2}
-   */
-  getScore() {
-    return this.fields.reduce((sum, field) => {
-      return sum + (typeof field.instance.getScore === 'function' ?
-        field.instance.getScore() :
-        0);
-    }, 0);
-  }
-
-  /**
-   * Get maximum possible score.
-   * @returns {number} Maximum possible score.
-   * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-3}
-   */
-  getMaxScore() {
-    return this.fields.reduce((sum, field) => {
-      return sum + (typeof field.instance.getMaxScore === 'function' ?
-        field.instance.getMaxScore() :
-        0);
-    }, 0);
-  }
-
-  /**
-   * Show solutions.
-   * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-4}
-   */
-  showSolutions() {
-    this.fields.forEach((field) => {
-      if (typeof field?.instance?.showSolutions === 'function') {
-        field.instance.showSolutions();
-      }
-    });
-
-    this.trigger('resize');
-  }
-
-  /**
-   * Reset task.
-   * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-5}
-   */
-  resetTask() {
-    this.fields.forEach((field) => {
-      if (typeof field?.instance?.resetTask === 'function') {
-        field.instance.resetTask();
-      }
-
-      field.isDone = !field.instance || !this.isInstanceTask(field.instance);
-    });
-
-    this.trigger('resize');
-  }
-
-  /**
-   * Get xAPI data.
-   * @returns {object} XAPI statement.
-   * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-6}
-   */
-  getXAPIData() {
-    var xAPIEvent = this.createXAPIEvent('answered');
-
-    xAPIEvent.setScoredResult(this.getScore(),
-      this.getMaxScore(),
-      this,
-      true,
-      this.getScore() === this.getMaxScore()
-    );
-
-    return {
-      statement: xAPIEvent.data.statement,
-      children: this.getXAPIDataFromChildren(
-        this.fields.map((field) => field.instance)
-      )
-    };
-  }
-
-  /**
-   * Get xAPI data from sub content types.
-   * @param {H5P.ContentType[]} children instances.
-   * @returns {object[]} XAPI data objects used to build report.
-   */
-  getXAPIDataFromChildren(children) {
-    return children
-      .map((child) => {
-        if (typeof child.getXAPIData === 'function') {
-          return child.getXAPIData();
-        }
-      })
-      .filter((data) => !!data);
-  }
-
-  /**
-   * Create an xAPI event.
-   * @param {string} verb Short id of the verb we want to trigger.
-   * @returns {H5P.XAPIEvent} Event template.
-   */
-  createXAPIEvent(verb) {
-    const xAPIEvent = this.createXAPIEventTemplate(verb);
-    Util.extend(
-      xAPIEvent.getVerifiedStatementValue(['object', 'definition']),
-      this.getxAPIDefinition());
-
-    return xAPIEvent;
-  }
-
-  /**
-   * Get the xAPI definition for the xAPI object.
-   * @returns {object} XAPI definition.
-   */
-  getxAPIDefinition() {
-    const definition = {};
-
-    definition.name = {};
-    definition.name[this.languageTag] = this.getTitle();
-    // Fallback for h5p-php-reporting, expects en-US
-    definition.name['en-US'] = definition.name[this.languageTag];
-    definition.description = {};
-    definition.description[this.languageTag] = Util.stripHTML(
-      this.getDescription()
-    );
-    // Fallback for h5p-php-reporting, expects en-US
-    definition.description['en-US'] = definition.description[this.languageTag];
-    definition.type = 'http://adlnet.gov/expapi/activities/cmi.interaction';
-    definition.interactionType = 'compound';
-
-    return definition;
-  }
-
-  /**
    * Get instances.
    * @returns {H5P.ContentType[]} H5P instances. Interface for parent.
    */
@@ -635,40 +501,4 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
   getInstancesSemantics() {
     return this.params.fields.map((field) => field.content);
   }
-
-  /**
-   * Get task title.
-   * @returns {string} Title.
-   */
-  getTitle() {
-    // H5P Core function: createTitle
-    return H5P.createTitle(
-      this.extras?.metadata?.title || PortfolioPlaceholder.DEFAULT_DESCRIPTION
-    );
-  }
-
-  /**
-   * Get description.
-   * @returns {string} Description.
-   */
-  getDescription() {
-    return PortfolioPlaceholder.DEFAULT_DESCRIPTION;
-  }
-
-  /**
-   * Get current state.
-   * @returns {object} Current state.
-   */
-  getCurrentState() {
-    return {
-      children: this.fields.map((field) => {
-        return (typeof field?.instance?.getCurrentState === 'function') ?
-          field.instance.getCurrentState() || {} :
-          {};
-      })
-    };
-  }
 }
-
-/** @constant {string} */
-PortfolioPlaceholder.DEFAULT_DESCRIPTION = 'Group of Three';
