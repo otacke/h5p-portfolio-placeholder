@@ -1,5 +1,6 @@
 import InstanceWrapper from '@models/instance-wrapper.js';
 import Util from '@services/util.js';
+import API from '@mixins/api.js';
 import QuestionTypeContract from '@mixins/question-type-contract.js';
 import XAPI from '@mixins/xapi.js';
 import '@styles/h5p-portfolio-placeholder.scss';
@@ -15,7 +16,7 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
     super();
 
     Util.addMixins(
-      PortfolioPlaceholder, [QuestionTypeContract, XAPI]
+      PortfolioPlaceholder, [API, QuestionTypeContract, XAPI]
     );
 
     // Sanitize parameters
@@ -256,32 +257,5 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
     }
 
     return originalLength;
-  }
-
-  /**
-   * Find field by subContentId. Interface for parent.
-   * @param {string} subContentId SubContentId to look for.
-   * @returns {object|null} Field data.
-   */
-  findField(subContentId) {
-    return this.fields.find((field) => {
-      return field.instanceWrapper.getInstance().subContentId === subContentId;
-    }) || null;
-  }
-
-  /**
-   * Get instances. Interface for parent.
-   * @returns {H5P.ContentType[]} H5P instances. Interface for parent.
-   */
-  getInstances() {
-    return this.fields.map((field) => field.instanceWrapper.getInstance());
-  }
-
-  /**
-   * Get instances' semantics. Interface for parent.
-   * @returns {object[]} H5P instance semantics.
-   */
-  getInstancesSemantics() {
-    return this.params.fields.map((field) => field.content);
   }
 }
