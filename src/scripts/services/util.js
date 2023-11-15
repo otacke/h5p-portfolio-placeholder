@@ -1,5 +1,5 @@
 /** Class for utility functions */
-class Util {
+export default  class Util {
   /**
    * Extend an array just like JQuery's extend.
    * @returns {object} Merged objects.
@@ -69,5 +69,3 @@ class Util {
     return languageCode;
   }
 }
-
-export default Util;
