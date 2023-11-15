@@ -16,6 +16,7 @@ export default {
   resolve: {
     alias: {
       '@mixins': _resolve(__dirname, 'src/scripts/mixins'),
+      '@models': _resolve(__dirname, 'src/scripts/models'),
       '@scripts': _resolve(__dirname, 'src/scripts'),
       '@services': _resolve(__dirname, 'src/scripts/services'),
       '@styles': _resolve(__dirname, 'src/styles')
