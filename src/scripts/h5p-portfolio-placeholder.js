@@ -19,29 +19,7 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
       PortfolioPlaceholder, [API, QuestionTypeContract, XAPI]
     );
 
-    // Sanitize parameters
-    this.params = Util.extend(
-      {
-        placeholder: {
-          arrangement: '1',
-          fields: []
-        }
-      }, params);
-
-    // Sanitize image height limit
-    this.params.placeholder.imageHeightLimit = this.sanitizeImageHeightLimit(
-      this.params.placeholder.imageHeightLimit
-    );
-
-    // Sanitize grow proportion
-    this.params.placeholder.fields = this.params.placeholder.fields
-      .map((field) => {
-        field.width = field.width ?? 100;
-        field.verticalAlignment = field.verticalAlignment ?? 'top';
-        return field;
-      });
-
-    this.params = this.params.placeholder;
+    this.params = this.sanitize(params);
 
     this.contentId = contentId;
     this.extras = extras;
@@ -50,16 +28,6 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
 
     const defaultLanguage = extras?.metadata?.defaultLanguage || 'en';
     this.languageTag = Util.formatLanguageCode(defaultLanguage);
-
-    // Sanitize field parameters
-    const numberOfFields = this.params.arrangement
-      .split('-')
-      .reduce((sum, summand) => sum + parseInt(summand), 0);
-
-    this.params.fields = this.params.fields.slice(0, numberOfFields);
-    while (this.params.fields.length < numberOfFields) {
-      this.params.fields.push({});
-    }
 
     // Build fields
     this.fields = this.buildFields({
@@ -94,6 +62,8 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
       });
     });
   }
+
+  // TODO: This can surely be cleaned up by introducing some classes/components
 
   /**
    * Build fields including DOM and H5P instances.
@@ -236,6 +206,50 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
     window.requestAnimationFrame(() => {
       this.triggerXAPIScored(this.getScore(), this.getMaxScore(), 'completed');
     });
+  }
+
+  /**
+   * Sanitize parameters.
+   * @param {object} params Parameters passed by the editor.
+   * @returns {object} Sanitized parameters.
+   */
+  sanitize(params) {
+    let sanitzedParams = Util.extend(
+      {
+        placeholder: {
+          arrangement: '1',
+          fields: []
+        }
+      }, params);
+
+    // Sanitize image height limit
+    sanitzedParams.placeholder.imageHeightLimit =
+      this.sanitizeImageHeightLimit(
+        sanitzedParams.placeholder.imageHeightLimit
+      );
+
+    // Sanitize grow proportion
+    sanitzedParams.placeholder.fields = sanitzedParams.placeholder.fields
+      .map((field) => {
+        field.width = field.width ?? 100;
+        field.verticalAlignment = field.verticalAlignment ?? 'top';
+        return field;
+      });
+
+    sanitzedParams = sanitzedParams.placeholder;
+
+    // Sanitize field parameters
+    const numberOfFields = sanitzedParams.arrangement
+      .split('-')
+      .reduce((sum, summand) => sum + parseInt(summand), 0);
+
+    // Ensure correct number of fields
+    sanitzedParams.fields = sanitzedParams.fields.slice(0, numberOfFields);
+    while (sanitzedParams.fields.length < numberOfFields) {
+      sanitzedParams.fields.push({});
+    }
+
+    return sanitzedParams;
   }
 
   /**
