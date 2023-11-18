@@ -10,7 +10,7 @@ export default class InstanceWrapper {
    * @param {object} params.field Field as defined in editor.
    * @param {number} params.contentId Content id.
    * @param {HTMLElement} params.dom DOM element to render H5P content in.
-   * @param {H5P.ContentType} params.parentInstance Parent H5P content.
+   * @param {H5P.ContentType} params.mainInstance Parent H5P content.
    * @param {object} params.previousState Previous state of H5P content.
    * @param {string} params.imageHeightLimit Image height limit.
    * @param {object} callbacks Callbacks.
@@ -25,8 +25,8 @@ export default class InstanceWrapper {
     }, params);
 
     callbacks = Util.extend({
-      onXAPI: () => {} }, callbacks
-    );
+      onXAPI: () => {}
+    }, callbacks);
 
     const machineName = (typeof params.field.content.library === 'string') ?
       params.field.content.library.split(' ')[0] :
@@ -63,14 +63,18 @@ export default class InstanceWrapper {
 
     // Resize instance to fit inside parent and vice versa
     if (this.instance) {
-      this.bubbleDown(params.parentInstance, 'resize', [this.instance]);
-      this.bubbleUp(this.instance, 'resize', params.parentInstance);
+      this.bubbleDown(params.mainInstance, 'resize', [this.instance]);
+      this.bubbleUp(this.instance, 'resize', params.mainInstance);
     }
 
     if (this.isTask()) {
+      this.setDone(false);
       this.instance.on('xAPI', (event) => {
         callbacks.onXAPI(event, params.index);
       });
+    }
+    else {
+      this.setDone(true);
     }
   }
 
@@ -292,5 +296,25 @@ export default class InstanceWrapper {
     ];
 
     return exceptions.includes(this.instance.libraryInfo?.machineName);
+  }
+
+  /**
+   * Set instance as done or undone.
+   * @param {boolean} state True, if instance is done, false if instance not done.
+   */
+  setDone(state) {
+    if (typeof state !== 'boolean') {
+      return;
+    }
+
+    this.instanceDone = state;
+  }
+
+  /**
+   * Determine whether instance is done.
+   * @returns {boolean} True, if instance is done.
+   */
+  isDone() {
+    return this.instanceDone;
   }
 }

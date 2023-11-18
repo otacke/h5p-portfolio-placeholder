@@ -8,8 +8,8 @@ export default class API {
    * @returns {object|null} Field data.
    */
   findField(subContentId) {
-    return this.fields.find((field) => {
-      return field.instanceWrapper.getInstance().subContentId === subContentId;
+    return this.instanceWrappers.find((instanceWrapper) => {
+      return instanceWrapper.getInstance()?.subContentId === subContentId;
     }) || null;
   }
 
@@ -18,7 +18,8 @@ export default class API {
    * @returns {H5P.ContentType[]} H5P instances. Interface for parent.
    */
   getInstances() {
-    return this.fields.map((field) => field.instanceWrapper.getInstance());
+    return this.instanceWrappers
+      .map((instanceWrapper) => instanceWrapper.getInstance());
   }
 
   /**

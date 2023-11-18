@@ -1,3 +1,5 @@
+import Util from '@services/util.js';
+import InstanceWrapper from '@models/instance-wrapper.js';
 import './content.scss';
 
 export default class Content {
@@ -9,14 +11,47 @@ export default class Content {
    * @param {string} [params.verticalAlignment] Vertical alignment.
    * @param {number} [params.width] Width.
    * @param {number} [params.totalSpaceHorizontal] Total horizontal space.
+   * @param {object} [callbacks] Callbacks.
+   * @param {function} [callbacks.xAPI] Callback for xAPI events.
    */
-  constructor(params = {}) {
+  constructor(params = {}, callbacks = {}) {
+    callbacks = Util.extend({
+      xAPI: () => {}
+    }, callbacks);
+
     this.dom = document.createElement('div');
     this.dom.classList.add('h5p-portfolio-placeholder-content');
     this.dom.classList.add(`vertical-alignment-${params.verticalAlignment}`);
     this.dom.style.width =
       `${ 100 * params.width / params.totalSpaceHorizontal }%`;
-    this.dom.appendChild(params.dom); // TODO: Create DOM here, not in main.js
+
+    const contentWrapper = document.createElement('div');
+    contentWrapper.classList.add('h5p-portfolio-placeholder-content-instance');
+    if (params.width) {
+      contentWrapper.style.width = params.width;
+    }
+    this.dom.appendChild(contentWrapper);
+
+    const previousState = params?.previousStates.length > params.index ?
+      params.previousStates[params.index] :
+      {};
+
+    this.instanceWrapper = new InstanceWrapper(
+      {
+        index: params.index,
+        field: params.field,
+        contentId: params.contentId,
+        dom: contentWrapper,
+        mainInstance: params.mainInstance,
+        previousState: previousState,
+        imageHeightLimit: params.imageHeightLimit
+      },
+      {
+        onXAPI: (event, index) => {
+          callbacks.xAPI(event, index);
+        }
+      }
+    );
   }
 
   /**
@@ -25,5 +60,13 @@ export default class Content {
    */
   getDOM() {
     return this.dom;
+  }
+
+  /**
+   * Get instance wrapper.
+   * @returns {InstanceWrapper} Instance wrapper.
+   */
+  getInstanceWrapper() {
+    return this.instanceWrapper;
   }
 }

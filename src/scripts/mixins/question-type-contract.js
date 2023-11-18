@@ -8,10 +8,10 @@ export default class QuestionTypeContract {
    * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-1}
    */
   getAnswerGiven() {
-    return this.fields.some((field) => {
+    return this.instanceWrappers.some((instanceWrapper) => {
       return (
-        typeof field?.instance?.getAnswerGiven === 'function' &&
-        field.instance.getAnswerGiven()
+        typeof instanceWrapper.getInstance()?.getAnswerGiven === 'function' &&
+        instanceWrapper.getInstance().getAnswerGiven()
       );
     });
   }
@@ -22,10 +22,12 @@ export default class QuestionTypeContract {
    * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-2}
    */
   getScore() {
-    return this.fields.reduce((sum, field) => {
-      return sum + (typeof field.instance.getScore === 'function' ?
-        field.instance.getScore() :
-        0);
+    return this.instanceWrappers.reduce((sum, instanceWrapper) => {
+      return sum + (
+        typeof instanceWrapper.getInstance()?.getScore === 'function' ?
+          instanceWrapper.getInstance()?.getScore() :
+          0
+      );
     }, 0);
   }
 
@@ -35,10 +37,12 @@ export default class QuestionTypeContract {
    * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-3}
    */
   getMaxScore() {
-    return this.fields.reduce((sum, field) => {
-      return sum + (typeof field.instance.getMaxScore === 'function' ?
-        field.instance.getMaxScore() :
-        0);
+    return this.instanceWrappers.reduce((sum, instanceWrapper) => {
+      return sum + (
+        typeof instanceWrapper.getInstance()?.getMaxScore === 'function' ?
+          instanceWrapper.getInstance().getMaxScore() :
+          0
+      );
     }, 0);
   }
 
@@ -47,9 +51,9 @@ export default class QuestionTypeContract {
    * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-4}
    */
   showSolutions() {
-    this.fields.forEach((field) => {
-      if (typeof field?.instance?.showSolutions === 'function') {
-        field.instance.showSolutions();
+    this.instanceWrappers.forEach((instanceWrapper) => {
+      if (typeof instanceWrapper.getInstance()?.showSolutions === 'function') {
+        instanceWrapper.getInstance().showSolutions();
       }
     });
 
@@ -61,12 +65,14 @@ export default class QuestionTypeContract {
    * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-5}
    */
   resetTask() {
-    this.fields.forEach((field) => {
-      if (typeof field?.instance?.resetTask === 'function') {
-        field.instance.resetTask();
+    this.instanceWrappers.forEach((instanceWrapper) => {
+      if (typeof instanceWrapper.getInstance()?.resetTask === 'function') {
+        instanceWrapper.getInstance().resetTask();
       }
 
-      field.isDone = !field.instance || !this.isInstanceTask(field.instance);
+      instanceWrapper.setDone(
+        !instanceWrapper.getInstance() || !instanceWrapper.isTask()
+      );
     });
 
     this.trigger('resize');
@@ -93,7 +99,8 @@ export default class QuestionTypeContract {
     return {
       statement: xAPIEvent.data.statement,
       children: this.getXAPIDataFromChildren(
-        this.fields.map((field) => field.instance)
+        this.instanceWrappers
+          .map((instanceWrapper) => instanceWrapper.getInstance())
       )
     };
   }
@@ -105,10 +112,8 @@ export default class QuestionTypeContract {
    */
   getCurrentState() {
     return {
-      children: this.fields.map((field) => {
-        return (typeof field?.instance?.getCurrentState === 'function') ?
-          field.instance.getCurrentState() || {} :
-          {};
+      children: this.instanceWrappers.map((instanceWrapper) => {
+        return instanceWrapper.instance?.getCurrentState?.() || {};
       })
     };
   }

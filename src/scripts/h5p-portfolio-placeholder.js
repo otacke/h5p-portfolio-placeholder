@@ -1,5 +1,4 @@
 import Main from '@components/main.js';
-import InstanceWrapper from '@models/instance-wrapper.js';
 import Util from '@services/util.js';
 import API from '@mixins/api.js';
 import QuestionTypeContract from '@mixins/question-type-contract.js';
@@ -29,18 +28,30 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
     const defaultLanguage = extras?.metadata?.defaultLanguage || 'en';
     this.languageTag = Util.formatLanguageCode(defaultLanguage);
 
-    // Build fields
-    this.fields = this.buildFields({
-      fields: this.params.fields,
-      previousStates: this.previousState.children || [],
-      arrangement: this.params.arrangement
-    });
+    this.main = new Main(
+      {
+        colorBackground: this.params.colorBackground,
+        contentId: this.contentId,
+        arrangement: this.params.arrangement,
+        fields: this.params.fields,
+        mainInstance: this,
+        previousStates: this.previousState.children || [],
+        imageHeightLimit: this.params.imageHeightLimit
+      },
+      {
+        xAPI: (event, index) => {
+          this.trackScoring(event, index);
+        }
+      }
+    );
 
-    this.dom = this.buildDOM();
+    this.dom = this.main.getDOM();
+
+    this.instanceWrappers = this.main.getInstanceWrappers();
 
     // Some other content types might use this information
-    this.isTask = this.fields.some(
-      (field) => field.instanceWrapper.isTask()
+    this.isTask = this.instanceWrappers.some(
+      (instanceWrapper) => instanceWrapper.isTask()
     );
 
     // Expect parent to set activity started when parent is shown
@@ -65,82 +76,6 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
     });
   }
 
-  // TODO: This can surely be cleaned up by introducing some classes/components
-
-  /**
-   * Build fields including DOM and H5P instances.
-   * @param {object} params Parameters.
-   * @param {object[]} params.fields Field parameters.
-   * @param {object[]} params.previousStates Previous states.
-   * @param {string} params.arrangement Layout arrangement.
-   * @returns {object[]} Fields including DOM and instance.
-   */
-  buildFields(params = {}) {
-    const fields = (params.fields || []).map((field, index) => {
-      const dom = this.buildContentWrapper();
-
-      const previousState = params?.previousStates.length > index ?
-        params.previousStates[index] :
-        {};
-
-      const instanceWrapper = new InstanceWrapper(
-        {
-          index: index,
-          field: field,
-          contentId: this.contentId,
-          dom: dom,
-          parentInstance: this,
-          previousState: previousState,
-          imageHeightLimit: this.params.imageHeightLimit
-        },
-        {
-          onXAPI: (event, index) => {
-            this.trackScoring(event, index);
-          }
-        }
-      );
-
-      return Util.extend({
-        dom: dom,
-        instanceWrapper: instanceWrapper,
-        isDone: !instanceWrapper.isTask(),
-        verticalAlignment: field.verticalAlignment,
-        width: field.width
-      }, field);
-    });
-
-    return fields;
-  }
-
-  /**
-   * Build DOM.
-   * @returns {HTMLElement} Content DOM.
-   */
-  buildDOM() {
-    const contents = new Main({
-      colorBackground: this.params.colorBackground,
-      arrangement: this.params.arrangement,
-      fields: this.fields
-    });
-
-    return contents.getDOM();
-  }
-
-  /**
-   * Build content wrapper.
-   * @param {object} [params] Parameters.
-   * @returns {HTMLElement} Content wrapper.
-   */
-  buildContentWrapper(params = {}) {
-    const contentWrapper = document.createElement('div');
-    contentWrapper.classList.add('h5p-portfolio-placeholder-content-instance');
-    if (params.width) {
-      contentWrapper.style.width = params.width;
-    }
-
-    return contentWrapper;
-  }
-
   /**
    * Track scoring of fields.
    * @param {Event} event Event.
@@ -151,12 +86,15 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
       return; // Not relevant
     }
 
-    if (index < 0 || index > this.fields.length - 1) {
+    if (index < 0 || index > this.instanceWrappers.length - 1) {
       return; // Not valid
     }
 
-    this.fields[index].isDone = true;
-    if (this.fields.every((field) => field.isDone)) {
+    this.instanceWrappers[index].setDone(true);
+
+    if (this.instanceWrappers.every(
+      (instanceWrapper) => instanceWrapper.isDone())
+    ) {
       this.handleAllFieldsDone();
     }
   }

@@ -1,3 +1,4 @@
+import Util from '@services/util.js';
 import Content from './content.js';
 import './row.scss';
 
@@ -6,10 +7,15 @@ export default class Row {
    * @class
    * @param {object} [params] Parameters.
    * @param {object[]} [params.fields] Fields.
+   * @param {object} [callbacks] Callbacks.
+   * @param {function} [callbacks.xAPI] Callback for xAPI events.
    */
-  constructor(params = {}) {
-    params.fields = params.fields || [];
+  constructor(params = {}, callbacks = {}) {
+    callbacks = Util.extend({
+      xAPI: () => {}
+    }, callbacks);
 
+    params = Util.extend({ fields: [] }, params);
     this.dom = document.createElement('div');
     this.dom.classList.add('h5p-portfolio-placeholder-content-row');
 
@@ -17,15 +23,30 @@ export default class Row {
       return space + field.width;
     }, 0);
 
-    params.fields.forEach((field) => {
-      const content = new Content({
-        dom: field.dom, // Create in content.js
-        verticalAlignment: field.verticalAlignment,
-        width: field.width,
-        totalSpaceHorizontal: totalSpaceHorizontal
-      });
+    this.contents = params.fields.map((field, index) => {
+      const content = new Content(
+        {
+          contentId: params.contentId,
+          field: field,
+          imageHeightLimit: params.imageHeightLimit,
+          index: params.index + index,
+          mainInstance: params.mainInstance,
+          previousStates: params.previousStates,
+          totalSpaceHorizontal: totalSpaceHorizontal,
+          verticalAlignment: field.verticalAlignment,
+          width: field.width
+        },
+        {
+          xAPI: (event, index) => {
+            callbacks.xAPI(event, index);
+          }
+        }
+      );
 
+      // TODO: Extra Loop
       this.dom.appendChild(content.getDOM());
+
+      return content;
     });
   }
 
@@ -35,5 +56,13 @@ export default class Row {
    */
   getDOM() {
     return this.dom;
+  }
+
+  /**
+   * Get instance wrappers.
+   * @returns {object[]} Instance wrappers.
+   */
+  getInstanceWrappers() {
+    return this.contents.map((content) => content.getInstanceWrapper());
   }
 }
