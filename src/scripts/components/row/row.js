@@ -43,10 +43,11 @@ export default class Row {
         }
       );
 
-      // TODO: Extra Loop
-      this.dom.appendChild(content.getDOM());
-
       return content;
+    });
+
+    this.contents.forEach((content) => {
+      this.dom.appendChild(content.getDOM());
     });
   }
 

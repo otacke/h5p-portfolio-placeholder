@@ -28,19 +28,20 @@ export default class Main {
       this.dom.style.backgroundColor = params.colorBackground;
     }
 
-    // TODO: Is there a better way to do this?
-    let index = 0;
+    let columnIndex = 0;
+    this.rows = (params.arrangement.split('-')).map((columnsInRow) => {
+      columnsInRow = parseInt(columnsInRow);
 
-    this.rows = (params.arrangement.split('-')).map((rowCount) => {
       const row = new Row(
         {
           colorBackground: params.colorBackground,
           contentId: params.contentId,
-          fields: params.fields.slice(index, index + parseInt(rowCount)),
+          fields: params.fields.slice(columnIndex, columnIndex + columnsInRow),
           imageHeightLimit: params.imageHeightLimit,
-          index: index,
+          index: columnIndex,
           mainInstance: params.mainInstance,
-          previousStates: params.previousStates.slice(index, index + parseInt(rowCount))
+          previousStates: params.previousStates
+            .slice(columnIndex, columnIndex + columnsInRow)
         },
         {
           xAPI: (event, index) => {
@@ -49,12 +50,13 @@ export default class Main {
         }
       );
 
-      // TODO: Extra Loop
-      this.dom.appendChild(row.getDOM());
-
-      index += parseInt(rowCount);
+      columnIndex += columnsInRow;
 
       return row;
+    });
+
+    this.rows.forEach((row) => {
+      this.dom.appendChild(row.getDOM());
     });
   }
 
