@@ -9,10 +9,7 @@ export default class QuestionTypeContract {
    */
   getAnswerGiven() {
     return this.instanceWrappers.some((instanceWrapper) => {
-      return (
-        typeof instanceWrapper.getInstance()?.getAnswerGiven === 'function' &&
-        instanceWrapper.getInstance().getAnswerGiven()
-      );
+      return instanceWrapper.getAnswerGiven();
     });
   }
 
@@ -23,11 +20,7 @@ export default class QuestionTypeContract {
    */
   getScore() {
     return this.instanceWrappers.reduce((sum, instanceWrapper) => {
-      return sum + (
-        typeof instanceWrapper.getInstance()?.getScore === 'function' ?
-          instanceWrapper.getInstance()?.getScore() :
-          0
-      );
+      return sum + instanceWrapper.getScore();
     }, 0);
   }
 
@@ -38,11 +31,7 @@ export default class QuestionTypeContract {
    */
   getMaxScore() {
     return this.instanceWrappers.reduce((sum, instanceWrapper) => {
-      return sum + (
-        typeof instanceWrapper.getInstance()?.getMaxScore === 'function' ?
-          instanceWrapper.getInstance().getMaxScore() :
-          0
-      );
+      return sum + instanceWrapper.getMaxScore();
     }, 0);
   }
 
@@ -52,9 +41,7 @@ export default class QuestionTypeContract {
    */
   showSolutions() {
     this.instanceWrappers.forEach((instanceWrapper) => {
-      if (typeof instanceWrapper.getInstance()?.showSolutions === 'function') {
-        instanceWrapper.getInstance().showSolutions();
-      }
+      instanceWrapper.showSolutions();
     });
 
     this.trigger('resize');
@@ -66,13 +53,7 @@ export default class QuestionTypeContract {
    */
   resetTask() {
     this.instanceWrappers.forEach((instanceWrapper) => {
-      if (typeof instanceWrapper.getInstance()?.resetTask === 'function') {
-        instanceWrapper.getInstance().resetTask();
-      }
-
-      instanceWrapper.setDone(
-        !instanceWrapper.getInstance() || !instanceWrapper.isTask()
-      );
+      instanceWrapper.resetTask();
     });
 
     this.trigger('resize');
@@ -113,7 +94,7 @@ export default class QuestionTypeContract {
   getCurrentState() {
     return {
       children: this.instanceWrappers.map((instanceWrapper) => {
-        return instanceWrapper.instance?.getCurrentState?.() || {};
+        return instanceWrapper.getCurrentState();
       })
     };
   }

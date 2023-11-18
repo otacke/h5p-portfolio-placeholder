@@ -47,6 +47,13 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
 
     this.dom = this.main.getDOM();
 
+    /*
+     * Retrieve instance wrappers that were created in content components.
+     * Felt easier to let the content components create them, because the
+     * instanced need their DOM to be attached to. That's why the instance
+     * wrappers were not created here to begin with. But one could as well and
+     * set the instance DOM later.
+     */
     this.instanceWrappers = this.main.getInstanceWrappers();
 
     // Some other content types might use this information
