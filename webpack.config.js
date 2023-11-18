@@ -15,6 +15,7 @@ export default {
   mode: mode,
   resolve: {
     alias: {
+      '@components': _resolve(__dirname, 'src/scripts/components'),
       '@mixins': _resolve(__dirname, 'src/scripts/mixins'),
       '@models': _resolve(__dirname, 'src/scripts/models'),
       '@scripts': _resolve(__dirname, 'src/scripts'),

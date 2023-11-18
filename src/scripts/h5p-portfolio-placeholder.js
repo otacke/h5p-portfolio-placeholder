@@ -1,9 +1,9 @@
+import Main from '@components/main.js';
 import InstanceWrapper from '@models/instance-wrapper.js';
 import Util from '@services/util.js';
 import API from '@mixins/api.js';
 import QuestionTypeContract from '@mixins/question-type-contract.js';
 import XAPI from '@mixins/xapi.js';
-import '@styles/h5p-portfolio-placeholder.scss';
 
 export default class PortfolioPlaceholder extends H5P.EventDispatcher {
   /**
@@ -36,6 +36,8 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
       arrangement: this.params.arrangement
     });
 
+    this.dom = this.buildDOM();
+
     // Some other content types might use this information
     this.isTask = this.fields.some(
       (field) => field.instanceWrapper.isTask()
@@ -53,7 +55,7 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
    */
   attach($wrapper) {
     $wrapper.get(0).classList.add('h5p-portfolio-placeholder');
-    $wrapper.get(0).appendChild(this.buildDOM());
+    $wrapper.get(0).appendChild(this.dom);
 
     // Make sure DOM has been rendered with content
     window.requestAnimationFrame(() => {
@@ -98,13 +100,13 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
         }
       );
 
-      return {
+      return Util.extend({
         dom: dom,
         instanceWrapper: instanceWrapper,
         isDone: !instanceWrapper.isTask(),
         verticalAlignment: field.verticalAlignment,
         width: field.width
-      };
+      }, field);
     });
 
     return fields;
@@ -115,52 +117,13 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
    * @returns {HTMLElement} Content DOM.
    */
   buildDOM() {
-    const contents = document.createElement('div');
-    contents.classList.add('h5p-portfolio-placeholder-contents');
-    if (this.params.colorBackground !== 'rgba(0, 0, 0, 0)') {
-      contents.style.backgroundColor = this.params.colorBackground;
-    }
-
-    let index = 0;
-    const rowsToBuild = this.params.arrangement.split('-');
-    rowsToBuild.forEach((rowCount) => {
-      const fieldsToBuild = this.fields
-        .slice(index, index + parseInt(rowCount));
-
-      contents.appendChild(this.buildContentRow({ fields: fieldsToBuild }));
-
-      index += parseInt(rowCount);
+    const contents = new Main({
+      colorBackground: this.params.colorBackground,
+      arrangement: this.params.arrangement,
+      fields: this.fields
     });
 
-    return contents;
-  }
-
-  /**
-   * Build content row.
-   * @param {object} [params] Parameters.
-   * @returns {HTMLElement} Content row.
-   */
-  buildContentRow(params = {}) {
-    params.fields = params.fields || [];
-
-    const row = document.createElement('div');
-    row.classList.add('h5p-portfolio-placeholder-content-row');
-
-    const totalSpaceHorizontal = params.fields.reduce((space, field) => {
-      return space + field.width;
-    }, 0);
-
-    params.fields.forEach((field) => {
-      const wrapper = document.createElement('div');
-      wrapper.classList.add('h5p-portfolio-placeholder-content');
-      wrapper.classList.add(`vertical-alignment-${field.verticalAlignment}`);
-      wrapper.style.width = `${ 100 * field.width / totalSpaceHorizontal }%`;
-      wrapper.appendChild(field.dom);
-
-      row.appendChild(wrapper);
-    });
-
-    return row;
+    return contents.getDOM();
   }
 
   /**
