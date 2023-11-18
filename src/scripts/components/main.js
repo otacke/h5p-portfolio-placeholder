@@ -2,20 +2,24 @@ import Util from '@services/util.js';
 import Row from '@components/row/row.js';
 
 export default class Main {
-
   /**
    * @class
    * @param {object} [params] Parameters.
-   * @param {string} [params.colorBackground] Background color.
    * @param {string} [params.arrangement] Layout arrangement.
+   * @param {string} [params.colorBackground] Background color.
+   * @param {number} [params.contentId] Content id.
    * @param {object[]} [params.fields] Fields.
+   * @param {string} [params.imageHeightLimit] Image height limit.
+   * @param {object} [params.mainInstance] Main instance.
    * @param {object} [params.previousStates] Previous states.
    * @param {object} [callbacks] Callbacks.
    * @param {function} [callbacks.xAPI] Callback for xAPI events.
    */
   constructor(params = {}, callbacks = {}) {
     params = Util.extend({
-      arrangement: '1'
+      arrangement: '1',
+      fields: [],
+      previousStates: []
     }, params);
 
     callbacks = Util.extend({
@@ -28,6 +32,10 @@ export default class Main {
       this.dom.style.backgroundColor = params.colorBackground;
     }
 
+    /*
+     * columnIndex holds the absolute index of the first field to be added to
+     * a row. It is incremented by the number of fields in each row.
+     */
     let columnIndex = 0;
     this.rows = (params.arrangement.split('-')).map((columnsInRow) => {
       columnsInRow = parseInt(columnsInRow);

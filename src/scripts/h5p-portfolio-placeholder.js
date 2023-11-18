@@ -1,5 +1,6 @@
 import Main from '@components/main.js';
 import Util from '@services/util.js';
+import { sanitize } from '@services/util-param-sanitization.js';
 import API from '@mixins/api.js';
 import QuestionTypeContract from '@mixins/question-type-contract.js';
 import XAPI from '@mixins/xapi.js';
@@ -18,7 +19,7 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
       PortfolioPlaceholder, [API, QuestionTypeContract, XAPI]
     );
 
-    this.params = this.sanitize(params);
+    this.params = sanitize(params);
 
     this.contentId = contentId;
     this.extras = extras;
@@ -114,70 +115,5 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
     window.requestAnimationFrame(() => {
       this.triggerXAPIScored(this.getScore(), this.getMaxScore(), 'completed');
     });
-  }
-
-  /**
-   * Sanitize parameters.
-   * @param {object} params Parameters passed by the editor.
-   * @returns {object} Sanitized parameters.
-   */
-  sanitize(params) {
-    let sanitzedParams = Util.extend(
-      {
-        placeholder: {
-          arrangement: '1',
-          fields: []
-        }
-      }, params);
-
-    // Sanitize image height limit
-    sanitzedParams.placeholder.imageHeightLimit =
-      this.sanitizeImageHeightLimit(
-        sanitzedParams.placeholder.imageHeightLimit
-      );
-
-    // Sanitize grow proportion
-    sanitzedParams.placeholder.fields = sanitzedParams.placeholder.fields
-      .map((field) => {
-        field.width = field.width ?? 100;
-        field.verticalAlignment = field.verticalAlignment ?? 'top';
-        return field;
-      });
-
-    sanitzedParams = sanitzedParams.placeholder;
-
-    // Sanitize field parameters
-    const numberOfFields = sanitzedParams.arrangement
-      .split('-')
-      .reduce((sum, summand) => sum + parseInt(summand), 0);
-
-    // Ensure correct number of fields
-    sanitzedParams.fields = sanitzedParams.fields.slice(0, numberOfFields);
-    while (sanitzedParams.fields.length < numberOfFields) {
-      sanitzedParams.fields.push({});
-    }
-
-    return sanitzedParams;
-  }
-
-  /**
-   * Sanitize image height limit. Not covering all cases ...
-   * @param {string} originalLength Original CSS length.
-   * @returns {string|undefined} Image height limit or undefined.
-   */
-  sanitizeImageHeightLimit(originalLength) {
-    if (typeof originalLength !== 'string') {
-      return;
-    }
-
-    // Remove space characters
-    originalLength = originalLength.replace(/ /, '');
-
-    // Assume px if no unit is attached
-    if (!isNaN(Number(originalLength))) {
-      originalLength = `${originalLength}px`;
-    }
-
-    return originalLength;
   }
 }
