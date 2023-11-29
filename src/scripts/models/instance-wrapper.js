@@ -134,6 +134,14 @@ export default class InstanceWrapper {
   }
 
   /**
+   * Get DOM.
+   * @returns {HTMLElement} DOM.
+   */
+  getDOM() {
+    return this.dom;
+  }
+
+  /**
    * Determine whether an H5P instance is a task.
    * @returns {boolean} True, if instance is a task.
    */
