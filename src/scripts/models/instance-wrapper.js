@@ -34,6 +34,9 @@ export default class InstanceWrapper {
       onXAPI: () => {}
     }, callbacks);
 
+    // Required for external access.
+    this.dom = params.dom;
+
     const machineName = (typeof params.field.content.library === 'string') ?
       params.field.content.library.split(' ')[0] :
       '';
