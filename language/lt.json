@@ -9,12 +9,12 @@
           "default": "#1768c4"
         },
         {
-          "label": "Background color",
-          "description": "Set an optional background color for the background.",
+          "label": "Fono spalva",
+          "description": "Nustatykite pasirinktinę fono spalvą.",
           "default": "rgba(0, 0, 0, 0)"
         },
         {
-          "label": "Image height limit",
+          "label": "Paveikslėlio aukščio riba",
           "description": "Set an optional height limit for image contents using CSS lengths, e.g. 160px or 5rem."
         },
         {
