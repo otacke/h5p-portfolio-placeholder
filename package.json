@@ -1,6 +1,6 @@
 {
   "name": "h5p-portfolio-placeholder",
-  "version": "0.9.16",
+  "version": "0.9.17",
   "description": "Placeholder for RUB Portfolio",
   "private": true,
   "scripts": {
