@@ -5,13 +5,11 @@
       "fields": [
         {
           "label": "Placeholder color",
-          "description": "Only used here in editor.",
-          "default": "#1768c4"
+          "description": "Only used here in editor."
         },
         {
           "label": "Background color",
-          "description": "Set an optional background color for the background.",
-          "default": "rgba(0, 0, 0, 0)"
+          "description": "Set an optional background color for the background."
         },
         {
           "label": "Image height limit",

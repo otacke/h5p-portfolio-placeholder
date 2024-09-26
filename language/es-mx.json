@@ -5,13 +5,11 @@
       "fields": [
         {
           "label": "Color del reemplazable",
-          "description": "Usado solamente aquí en el editor..",
-          "default": "#1768c4"
+          "description": "Usado solamente aquí en el editor.."
         },
         {
           "label": "Color del fondo",
-          "description": "Configurar un color opcional del fondo para el fondo.",
-          "default": "rgba(0, 0, 0, 0)"
+          "description": "Configurar un color opcional del fondo para el fondo."
         },
         {
           "label": "Límite de altura de imagen",

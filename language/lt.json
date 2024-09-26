@@ -5,13 +5,11 @@
       "fields": [
         {
           "label": "Vietos rezervavimo spalva",
-          "description": "Naudojamas tik čia, redaktoriuje.",
-          "default": "#1768c4"
+          "description": "Naudojamas tik čia, redaktoriuje."
         },
         {
           "label": "Fono spalva",
-          "description": "Nustatykite pasirinktinę fono spalvą.",
-          "default": "rgba(0, 0, 0, 0)"
+          "description": "Nustatykite pasirinktinę fono spalvą."
         },
         {
           "label": "Paveikslėlio aukščio riba",

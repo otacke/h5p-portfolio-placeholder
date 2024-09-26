@@ -5,13 +5,11 @@
       "fields": [
         {
           "label": "Platzhalterfarbe",
-          "description": "Wird nur hier im Editor benutzt.",
-          "default": "#1768c4"
+          "description": "Wird nur hier im Editor benutzt."
         },
         {
           "label": "Hintergrundfarbe",
-          "description": "Lege optional eine Hintergrundfarbe fest.",
-          "default": "rgba(0, 0, 0, 0)"
+          "description": "Lege optional eine Hintergrundfarbe fest."
         },
         {
           "label": "Höhenbegrenzung für Bilder",

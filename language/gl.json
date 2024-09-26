@@ -5,13 +5,11 @@
       "fields": [
         {
           "label": "Cor do marcador de posición",
-          "description": "Só se usa aquí no editor.",
-          "default": "#1768c4"
+          "description": "Só se usa aquí no editor."
         },
         {
           "label": "Cor de fondo",
-          "description": "Establece unha cor de fondo opcional para o fondo.",
-          "default": "rgba(0, 0, 0, 0)"
+          "description": "Establece unha cor de fondo opcional para o fondo."
         },
         {
           "label": "Límite de altura da imaxe",
