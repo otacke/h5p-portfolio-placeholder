@@ -23,11 +23,11 @@ export default class Content {
       previousState: {},
       verticalAlignment: 'top',
       width: 100,
-      widthRelative: '100%'
+      widthRelative: '100%',
     }, params);
 
     callbacks = Util.extend({
-      xAPI: () => {}
+      xAPI: () => {},
     }, callbacks);
 
     this.dom = document.createElement('div');
@@ -50,13 +50,13 @@ export default class Content {
         dom: contentWrapper,
         mainInstance: params.mainInstance,
         previousState: params.previousState,
-        imageHeightLimit: params.imageHeightLimit
+        imageHeightLimit: params.imageHeightLimit,
       },
       {
         onXAPI: (event, index) => {
           callbacks.xAPI(event, index);
-        }
-      }
+        },
+      },
     );
   }
 

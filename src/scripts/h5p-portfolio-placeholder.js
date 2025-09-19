@@ -16,7 +16,7 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
     super();
 
     Util.addMixins(
-      PortfolioPlaceholder, [API, QuestionTypeContract, XAPI]
+      PortfolioPlaceholder, [API, QuestionTypeContract, XAPI],
     );
 
     this.params = sanitize(params);
@@ -37,13 +37,13 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
         fields: this.params.fields,
         mainInstance: this,
         previousStates: this.previousState.children || [],
-        imageHeightLimit: this.params.imageHeightLimit
+        imageHeightLimit: this.params.imageHeightLimit,
       },
       {
         xAPI: (event, index) => {
           this.trackScoring(event, index);
-        }
-      }
+        },
+      },
     );
 
     this.dom = this.main.getDOM();
@@ -59,7 +59,7 @@ export default class PortfolioPlaceholder extends H5P.EventDispatcher {
 
     // Some other content types might use this information
     this.isTask = this.instanceWrappers.some(
-      (instanceWrapper) => instanceWrapper.isTask()
+      (instanceWrapper) => instanceWrapper.isTask(),
     );
 
     // Expect parent to set activity started when parent is shown

@@ -31,14 +31,14 @@ export const sanitize = (params) => {
     {
       placeholder: {
         arrangement: '1',
-        fields: []
-      }
+        fields: [],
+      },
     }, params);
 
   // Sanitize image height limit
   sanitzedParams.placeholder.imageHeightLimit =
     sanitizeImageHeightLimit(
-      sanitzedParams.placeholder.imageHeightLimit
+      sanitzedParams.placeholder.imageHeightLimit,
     );
 
   // Sanitize grow proportion

@@ -19,11 +19,11 @@ export default class Row {
   constructor(params = {}, callbacks = {}) {
     params = Util.extend({
       fields: [],
-      previousStates: []
+      previousStates: [],
     }, params);
 
     callbacks = Util.extend({
-      xAPI: () => {}
+      xAPI: () => {},
     }, callbacks);
 
     params = Util.extend({ fields: [] }, params);
@@ -55,13 +55,13 @@ export default class Row {
           totalSpaceHorizontal: totalSpaceHorizontal,
           verticalAlignment: field.verticalAlignment,
           width: field.width,
-          widthRelative: `${ 100 * field.width / totalSpaceHorizontal }%`
+          widthRelative: `${ 100 * field.width / totalSpaceHorizontal }%`,
         },
         {
           xAPI: (event, index) => {
             callbacks.xAPI(event, index);
-          }
-        }
+          },
+        },
       );
 
       return content;

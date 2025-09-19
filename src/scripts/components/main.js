@@ -19,11 +19,11 @@ export default class Main {
     params = Util.extend({
       arrangement: '1',
       fields: [],
-      previousStates: []
+      previousStates: [],
     }, params);
 
     callbacks = Util.extend({
-      xAPI: () => {}
+      xAPI: () => {},
     }, callbacks);
 
     this.dom = document.createElement('div');
@@ -49,13 +49,13 @@ export default class Main {
           index: columnIndex,
           mainInstance: params.mainInstance,
           previousStates: params.previousStates
-            .slice(columnIndex, columnIndex + columnsInRow)
+            .slice(columnIndex, columnIndex + columnsInRow),
         },
         {
           xAPI: (event, index) => {
             callbacks.xAPI(event, index);
-          }
-        }
+          },
+        },
       );
 
       columnIndex += columnsInRow;

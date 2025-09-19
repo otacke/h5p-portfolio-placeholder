@@ -74,15 +74,15 @@ export default class QuestionTypeContract {
       this.getMaxScore(),
       this,
       true,
-      this.getScore() === this.getMaxScore()
+      this.getScore() === this.getMaxScore(),
     );
 
     return {
       statement: xAPIEvent.data.statement,
       children: this.getXAPIDataFromChildren(
         this.instanceWrappers
-          .map((instanceWrapper) => instanceWrapper.getInstance())
-      )
+          .map((instanceWrapper) => instanceWrapper.getInstance()),
+      ),
     };
   }
 
@@ -95,7 +95,7 @@ export default class QuestionTypeContract {
     return {
       children: this.instanceWrappers.map((instanceWrapper) => {
         return instanceWrapper.getCurrentState();
-      })
+      }),
     };
   }
 }

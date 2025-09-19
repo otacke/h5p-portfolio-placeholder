@@ -4,7 +4,7 @@ import {
   customizeDOM,
   customizeParameters,
   customizeInstance,
-  removeFullscreenButtons
+  removeFullscreenButtons,
 } from './instance-wrapper-customizations.js';
 
 export default class InstanceWrapper {
@@ -25,13 +25,13 @@ export default class InstanceWrapper {
   constructor(params = {}, callbacks = {}) {
     params = Util.extend({
       field: {
-        content: {}
+        content: {},
       },
-      previousState: {}
+      previousState: {},
     }, params);
 
     callbacks = Util.extend({
-      onXAPI: () => {}
+      onXAPI: () => {},
     }, callbacks);
 
     // Required for external access.
@@ -44,7 +44,7 @@ export default class InstanceWrapper {
     // Customize parameters
     params.field.content.params = customizeParameters(
       machineName,
-      params.field.content.params
+      params.field.content.params,
     );
 
     this.instance = (params.field.content.library && !params.field.isHidden) ?
@@ -53,7 +53,7 @@ export default class InstanceWrapper {
         params.contentId,
         H5P.jQuery(params.dom),
         false,
-        { previousState: params.previousState }
+        { previousState: params.previousState },
       ) :
       null;
 
@@ -61,7 +61,7 @@ export default class InstanceWrapper {
     customizeInstance(
       machineName,
       this.instance,
-      { imageHeightLimit: params.imageHeightLimit }
+      { imageHeightLimit: params.imageHeightLimit },
     );
 
     // Customize DOM
@@ -164,10 +164,12 @@ export default class InstanceWrapper {
       return true;
     }
 
-    // Check for (temporary) exceptions
+    // Check for (temporary) exceptions, TODO: Check releases
     const exceptions = [
-      'H5P.MemoryGame', // Doesn't implement getMaxScore before V1.3.19, unfortunately minor version was not bumped when introducing it, so V1.4 it is
-      'H5P.SpeakTheWordsSet' // Doesn't implement getMaxScore yet, PR is from 2020, seehttps://github.com/h5p/h5p-speak-the-words-set/pull/22
+      // Doesn't implement getMaxScore V1.3.19-, minor version was not bumped when introducing, so V1.4 it is
+      'H5P.MemoryGame',
+      // Doesn't implement getMaxScore yet, PR is from 2020, see https://github.com/h5p/h5p-speak-the-words-set/pull/22
+      'H5P.SpeakTheWordsSet',
     ];
 
     return exceptions.includes(this.instance.libraryInfo?.machineName);
@@ -246,7 +248,7 @@ export default class InstanceWrapper {
     }
 
     this.setDone(
-      !this.getInstance() || !this.isTask()
+      !this.getInstance() || !this.isTask(),
     );
   }
 
