@@ -90,6 +90,24 @@ export const customizeDOM = (dom, instance, mainInstance, instanceWrapper) => {
         '100%';
     }
   }
+  else if (machineName === 'H5P.IFrameEmbed') {
+    // Will keep IFrameEmbedder iframe height when going to fullscreen and allow scrolling
+    instance.on('resize', () => {
+      const iframe = dom.querySelector('.h5p-iframe-content');
+      if (!iframe) {
+        return;
+      }
+
+      iframe.setAttribute('scrolling', H5P.isFullscreen ? 'yes' : 'no');
+
+      const iframeHeight = iframe.style.height;
+      if (iframeHeight === '100%') {
+        return;
+      }
+
+      iframe.style.setProperty('--forced-fullscreen-height', iframe.style.height);
+    });
+  }
   else if (machineName === 'H5P.ImageHotspots') {
     // Fix resize issue (Image Hotspots sets absolute width)
     mainInstance.on('resize', () => {

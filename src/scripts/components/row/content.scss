@@ -39,3 +39,9 @@
     }
   }
 }
+
+.h5p-fullscreen .h5p-portfolio-placeholder-content .h5p-portfolio-placeholder-content-instance {
+  & > .h5p-iframe-content {
+    height: var(--forced-fullscreen-height) !important;
+  }
+}
